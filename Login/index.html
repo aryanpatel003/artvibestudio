@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Art Gallery - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      .form-input {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+      .form-input:focus {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 8px 16px -2px rgba(79, 70, 229, 0.1), 0 4px 8px -2px rgba(79, 70, 229, 0.06);
+        border-color: #4F46E5;
+      }
+      .form-input {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(8px);
+      }
+      @keyframes fadeIn {
+      from {
+      opacity: 0;
+      transform: translateX(30px);
+      }
+      to {
+      opacity: 1;
+      transform: translateX(0);
+      }
+      }
+      @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      }
+      @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      }
+      @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+      }
+      .animate-float {
+      animation: float 3s ease-in-out infinite;
+      }
+      .animate-pulse-slow {
+      animation: pulse 2s ease-in-out infinite;
+      }
+      .animate-shake {
+      animation: shake 0.5s ease-in-out;
+      }
+      .hover-shake:hover {
+      animation: shake 0.5s ease-in-out;
+      }
+      .form-input:focus {
+      background: rgba(255, 255, 255, 0.95);
+      }
+      .form-float-label {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      transition: all 0.2s;
+      pointer-events: none;
+      }
+      .form-input:focus ~ .form-float-label,
+      .form-input:not(:placeholder-shown) ~ .form-float-label {
+      transform: translateY(-1.5rem);
+      font-size: 0.875rem;
+      color: #4F46E5;
+      }
+      .password-strength {
+      height: 4px;
+      transition: all 0.3s;
+      }
+      @keyframes slideIn {
+      from {
+      opacity: 0;
+      transform: translateY(20px);
+      }
+      to {
+      opacity: 1;
+      transform: translateY(0);
+      }
+      }
+      @keyframes fadeIn {
+      from {
+      opacity: 0;
+      }
+      to {
+      opacity: 1;
+      }
+      }
+      .form-input, button, .form-float-label {
+      animation: fadeIn 0.3s ease-out;
+      }
+      #loginForm, #signupForm {
+      animation: slideIn 0.4s ease-out;
+      }
+      .active-tab, .inactive-tab {
+      transition: all 0.3s ease;
+      }
+      button:not(.active-tab):not(.inactive-tab) {
+      transition: all 0.2s ease;
+      transform: scale(1);
+      }
+      button:not(.active-tab):not(.inactive-tab):hover {
+      transform: scale(1.02);
+      }
+      button:not(.active-tab):not(.inactive-tab):active {
+      transform: scale(0.98);
+      }
+      .form-input {
+      transition: all 0.2s ease;
+      }
+      .form-input:focus {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.1), 0 2px 4px -1px rgba(79, 70, 229, 0.06);
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#4F46E5",
+              secondary: "#EC4899",
+            },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="min-h-screen">
+    <div
+      class="flex min-h-screen bg-gradient-to-br from-indigo-50 via-white to-pink-50 bg-[size:400%_400%] animate-[gradient_15s_ease_infinite]"
+    >
+      <div class="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+        <div
+          class="absolute inset-0 bg-cover bg-center"
+          style="background-image: url('https://public.readdy.ai/ai/img_res/f9134a275651eedfd6c4db1b4a0adca9.jpg')"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent backdrop-blur-sm"
+        ></div>
+        <div class="relative z-10 flex flex-col justify-center px-16">
+          <h1
+            class="font-['Pacifico'] text-5xl text-primary mb-6 animate-float"
+          >
+            logo
+          </h1>
+          <p class="text-2xl font-light text-gray-700 mb-8">
+            Discover and collect extraordinary artworks from talented artists
+            worldwide.
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <div
+                class="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover-shake"
+              >
+                <i
+                  class="ri-palette-line text-primary text-2xl animate-pulse-slow"
+                ></i>
+              </div>
+              <p class="ml-4 text-gray-600">
+                Curated collection of contemporary art
+              </p>
+            </div>
+            <div class="flex items-center">
+              <div
+                class="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover-shake"
+              >
+                <i
+                  class="ri-shield-check-line text-primary text-2xl animate-pulse-slow"
+                ></i>
+              </div>
+              <p class="ml-4 text-gray-600">
+                Secure transactions and authenticity guaranteed
+              </p>
+            </div>
+            <div class="flex items-center">
+              <div
+                class="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover-shake"
+              >
+                <i
+                  class="ri-global-line text-primary text-2xl animate-pulse-slow"
+                ></i>
+              </div>
+              <p class="ml-4 text-gray-600">
+                Global community of artists and collectors
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="w-full lg:w-1/2 flex items-center justify-center p-8 animate-[fadeIn_0.8s_ease-out]"
+      >
+        <div
+          class="w-full max-w-xl bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-white/50"
+        >
+          <div class="flex justify-center mb-8">
+            <div class="inline-flex rounded-full p-1 bg-gray-100">
+              <button
+                class="active-tab px-8 py-3 rounded-full text-base font-medium bg-white shadow-sm"
+              >
+                Login
+              </button>
+              <button
+                class="inactive-tab px-8 py-3 rounded-full text-base font-medium text-gray-500"
+              >
+                Sign Up
+              </button>
+            </div>
+          </div>
+          <div id="loginForm" class="space-y-6">
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+              >
+                <i class="ri-user-line text-gray-400 text-xl"></i>
+              </div>
+              <input
+                type="email"
+                class="form-input block w-full pl-12 pr-4 py-4 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                placeholder=" "
+              />
+              <label class="form-float-label text-gray-500">Email</label>
+            </div>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+              >
+                <i class="ri-lock-line text-gray-400 text-xl"></i>
+              </div>
+              <input
+                type="password"
+                class="form-input block w-full pl-12 pr-12 py-4 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                placeholder=" "
+              />
+              <label class="form-float-label text-gray-500">Password</label>
+              <button
+                type="button"
+                class="absolute inset-y-0 right-0 pr-3 flex items-center"
+              >
+                <i class="ri-eye-line text-gray-400 text-xl"></i>
+              </button>
+            </div>
+            <div class="flex items-center justify-between">
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  class="h-5 w-5 text-primary border-gray-300 rounded"
+                />
+                <span class="ml-2 text-sm text-gray-600">Remember me</span>
+              </label>
+              <a href="#" class="text-sm text-primary hover:text-primary/80"
+                >Forgot password?</a
+              >
+            </div>
+            <button
+              class="w-full bg-primary text-white py-4 text-lg font-medium rounded-button hover:bg-primary/90 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_4px_14px_0_rgba(79,70,229,0.4)] hover:shadow-[0_6px_20px_rgba(79,70,229,0.6)] group"
+            >
+              <i
+                class="ri-login-circle-line mr-2 group-hover:animate-shake inline-block"
+              ></i>
+              <span class="group-hover:animate-shake inline-block">Login</span>
+            </button>
+            <div class="relative my-8">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-300"></div>
+              </div>
+              <div class="relative flex justify-center text-sm">
+                <span class="px-4 bg-white text-gray-500"
+                  >Or continue with</span
+                >
+              </div>
+            </div>
+            <div
+              class="grid grid-cols-3 gap-4 [&>button]:transition-all [&>button]:duration-300 [&>button]:hover:shadow-lg [&>button]:hover:scale-105 [&>button]:active:scale-95"
+            >
+              <button
+                class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-button hover:border-gray-400 transition-all duration-300 bg-white"
+              >
+                <i class="ri-google-fill text-xl"></i>
+              </button>
+              <button
+                class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-button hover:border-gray-400 transition-all duration-300 bg-white"
+              >
+                <i class="ri-apple-fill text-xl"></i>
+              </button>
+              <button
+                class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-button hover:border-gray-400 transition-all duration-300 bg-white"
+              >
+                <i class="ri-facebook-fill text-xl"></i>
+              </button>
+            </div>
+          </div>
+          <div id="signupForm" class="hidden space-y-6">
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+              >
+                <i class="ri-user-line text-gray-400 text-xl"></i>
+              </div>
+              <input
+                type="text"
+                class="form-input block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                placeholder=" "
+              />
+              <label class="form-float-label text-gray-500">Username</label>
+            </div>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+              >
+                <i class="ri-mail-line text-gray-400"></i>
+              </div>
+              <input
+                type="email"
+                class="form-input block w-full pl-12 pr-4 py-4 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                placeholder=" "
+              />
+              <label class="form-float-label text-gray-500">Email</label>
+            </div>
+            <div class="space-y-2">
+              <div class="relative">
+                <div
+                  class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+                >
+                  <i class="ri-lock-line text-gray-400 text-xl"></i>
+                </div>
+                <input
+                  type="password"
+                  class="form-input block w-full pl-12 pr-12 py-4 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                  placeholder=" "
+                />
+                <label class="form-float-label text-gray-500">Password</label>
+                <button
+                  type="button"
+                  class="absolute inset-y-0 right-0 pr-3 flex items-center"
+                >
+                  <i class="ri-eye-line text-gray-400 text-xl"></i>
+                </button>
+              </div>
+              <div class="flex space-x-1">
+                <div
+                  class="password-strength flex-1 bg-gray-200 rounded-full"
+                ></div>
+                <div
+                  class="password-strength flex-1 bg-gray-200 rounded-full"
+                ></div>
+                <div
+                  class="password-strength flex-1 bg-gray-200 rounded-full"
+                ></div>
+                <div
+                  class="password-strength flex-1 bg-gray-200 rounded-full"
+                ></div>
+              </div>
+              <p class="text-xs text-gray-500">
+                Password must be at least 8 characters long
+              </p>
+            </div>
+            <button
+              class="w-full bg-primary text-white py-4 text-lg font-medium rounded-button hover:bg-primary/90 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_4px_14px_0_rgba(79,70,229,0.4)] hover:shadow-[0_6px_20px_rgba(79,70,229,0.6)] group"
+            >
+              <i
+                class="ri-user-add-line mr-2 group-hover:animate-shake inline-block"
+              ></i>
+              <span class="group-hover:animate-shake inline-block"
+                >Create Account</span
+              >
+            </button>
+            <div class="relative my-8">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-300"></div>
+              </div>
+              <div class="relative flex justify-center text-sm">
+                <span class="px-4 bg-white text-gray-500"
+                  >Or continue with</span
+                >
+              </div>
+            </div>
+            <div
+              class="grid grid-cols-3 gap-4 [&>button]:transition-all [&>button]:duration-300 [&>button]:hover:shadow-lg [&>button]:hover:scale-105 [&>button]:active:scale-95"
+            >
+              <button
+                class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-button hover:border-gray-400 transition-all duration-300 bg-white"
+              >
+                <i class="ri-google-fill text-xl"></i>
+              </button>
+              <button
+                class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-button hover:border-gray-400 transition-all duration-300 bg-white"
+              >
+                <i class="ri-apple-fill text-xl"></i>
+              </button>
+              <button
+                class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-button hover:border-gray-400 transition-all duration-300 bg-white"
+              >
+                <i class="ri-facebook-fill text-xl"></i>
+              </button>
+            </div>
+          </div>
+          <div class="mt-8 text-center text-sm text-gray-500">
+            By continuing, you agree to our
+            <a href="#" class="text-primary hover:underline"
+              >Terms of Service</a
+            >
+            and
+            <a href="#" class="text-primary hover:underline">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const loginTab = document.querySelector(".active-tab");
+        const signupTab = document.querySelector(".inactive-tab");
+        const loginForm = document.getElementById("loginForm");
+        const signupForm = document.getElementById("signupForm");
+        loginTab.addEventListener("click", () => {
+          loginTab.classList.add("bg-white", "shadow-sm");
+          loginTab.classList.remove("text-gray-500");
+          signupTab.classList.remove("bg-white", "shadow-sm");
+          signupTab.classList.add("text-gray-500");
+          signupForm.style.display = "none";
+          loginForm.style.display = "block";
+          loginForm.style.animation = "slideIn 0.4s ease-out";
+        });
+        signupTab.addEventListener("click", () => {
+          signupTab.classList.add("bg-white", "shadow-sm");
+          signupTab.classList.remove("text-gray-500");
+          loginTab.classList.remove("bg-white", "shadow-sm");
+          loginTab.classList.add("text-gray-500");
+          loginForm.style.display = "none";
+          signupForm.style.display = "block";
+          signupForm.style.animation = "slideIn 0.4s ease-out";
+        });
+        const passwordInputs = document.querySelectorAll('input[type="password"]');
+        const toggleButtons = document.querySelectorAll(".ri-eye-line");
+        toggleButtons.forEach((button, index) => {
+          button.addEventListener("click", () => {
+            const input = passwordInputs[index];
+            if (input.type === "password") {
+              input.type = "text";
+              button.classList.remove("ri-eye-line");
+              button.classList.add("ri-eye-off-line");
+            } else {
+              input.type = "password";
+              button.classList.remove("ri-eye-off-line");
+              button.classList.add("ri-eye-line");
+            }
+          });
+        });
+        const signupPassword = signupForm.querySelector('input[type="password"]');
+        const strengthBars = document.querySelectorAll(".password-strength");
+        signupPassword.addEventListener("input", () => {
+          const password = signupPassword.value;
+          let strength = 0;
+          if (password.length >= 8) strength++;
+          if (password.match(/[A-Z]/)) strength++;
+          if (password.match(/[0-9]/)) strength++;
+          if (password.match(/[^A-Za-z0-9]/)) strength++;
+          strengthBars.forEach((bar, index) => {
+            if (index < strength) {
+              bar.style.backgroundColor = [
+                "#EF4444",
+                "#F59E0B",
+                "#10B981",
+                "#059669",
+              ][strength - 1];
+            } else {
+              bar.style.backgroundColor = "#E5E7EB";
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

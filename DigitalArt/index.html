@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Art- Custom Art</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#10B981'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        .drag-area.active { border: 2px dashed #4F46E5; }
+        .size-option input[type="radio"] { display: none; }
+        .size-option input[type="radio"]:checked + label { border-color: #4F46E5; background-color: #EEF2FF; }
+    </style>
+</head>
+<main class="pt-16">
+<body class="bg-white min-h-screen">
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-center h-16">
+            <div class="flex items-center">
+              <a href="#" class="text-2xl font-['Pacifico'] text-primary">logo</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+              <nav class="flex space-x-8">
+                <a href="#" class="text-gray-700 hover:text-primary">Gallery</a>
+                <a href="#" class="text-gray-700 hover:text-primary">Artists</a>
+                <a href="#" class="text-gray-700 hover:text-primary">Styles</a>
+                <a href="#" class="text-gray-700 hover:text-primary">Upload</a>
+              </nav>
+              <div class="relative">
+                <input type="text" placeholder="Search artworks, artists..."
+                  class="w-64 pl-10 pr-4 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/20">
+                <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+              </div>
+              <button class="flex items-center space-x-2 text-gray-700 hover:text-primary">
+                <i class="ri-user-line"></i>
+                <span><a href="Login\index.html target=" _self" target="_blank">Sign In </a></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-12">Create Your Custom Digital Art</h1>
+        <div class="flex flex-wrap gap-8">
+            <div class="flex-1 min-w-[600px]">
+                <div id="uploadArea" class="drag-area border-2 border-dashed border-gray-300 rounded-lg p-8 text-center mb-8 cursor-pointer hover:border-primary transition-colors">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <i class="ri-upload-cloud-line text-4xl text-gray-400"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Drag & Drop your photo here</h3>
+                    <p class="text-gray-500 mb-4">or</p>
+                    <button class="bg-white border border-gray-300 text-gray-700 px-6 py-2 !rounded-button hover:bg-gray-50">
+                        Browse Files
+                    </button>
+                    <input type="file" id="fileInput" class="hidden" accept="image/*">
+                    <p class="text-sm text-gray-500 mt-4">Supported formats: JPG, PNG, WEBP (Max 10MB)</p>
+                </div>
+
+                <div id="previewArea" class="hidden mb-8">
+                    <img id="previewImage" class="w-full h-[400px] object-cover rounded-lg" src="" alt="Preview">
+                    <button id="removeImage" class="mt-4 text-red-600 flex items-center gap-2">
+                        <i class="ri-delete-bin-line"></i>
+                        Remove Image
+                    </button>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4">Select Size</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="size-option">
+                            <input type="radio" name="size" id="a3" value="A3" data-price="39.99">
+                            <label for="a3" class="block border-2 p-4 rounded-lg cursor-pointer hover:border-primary transition-all">
+                                <div class="text-lg font-medium">A3</div>
+                                <div class="text-gray-500">297 × 420 mm</div>
+                                <div class="text-primary font-semibold mt-2">$39.99</div>
+                            </label>
+                        </div>
+                        <div class="size-option">
+                            <input type="radio" name="size" id="a4" value="A4" data-price="29.99">
+                            <label for="a4" class="block border-2 p-4 rounded-lg cursor-pointer hover:border-primary transition-all">
+                                <div class="text-lg font-medium">A4</div>
+                                <div class="text-gray-500">210 × 297 mm</div>
+                                <div class="text-primary font-semibold mt-2">$29.99</div>
+                            </label>
+                        </div>
+                        <div class="size-option">
+                            <input type="radio" name="size" id="letter" value="Letter" data-price="34.99">
+                            <label for="letter" class="block border-2 p-4 rounded-lg cursor-pointer hover:border-primary transition-all">
+                                <div class="text-lg font-medium">Letter</div>
+                                <div class="text-gray-500">216 × 279 mm</div>
+                                <div class="text-primary font-semibold mt-2">$34.99</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-[400px] sticky top-8 h-fit">
+                <div class="border rounded-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4">Order Summary</h3>
+                    <div id="summaryContent" class="hidden">
+                        <div class="flex items-start gap-4 mb-4 pb-4 border-b">
+                            <img id="summaryImage" class="w-20 h-20 object-cover rounded" src="" alt="Selected image">
+                            <div>
+                                <div id="selectedSize" class="font-medium">-</div>
+                                <div id="selectedPrice" class="text-primary font-semibold mt-1">-</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between text-lg font-semibold mb-6">
+                            <span>Total:</span>
+                            <span id="totalPrice" class="text-primary">$0.00</span>
+                        </div>
+                    </div>
+                    <div id="noSelection" class="text-gray-500 text-center py-8">
+                        Please upload an image and select size to continue
+                    </div>
+                    <div class="space-y-3">
+                        <button id="addToCart" disabled class="w-full bg-white border-2 border-primary text-primary py-2 !rounded-button font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary hover:text-white transition-colors">
+                            Add to Cart
+                        </button>
+                        <button id="buyNow" disabled class="w-full bg-primary text-white py-2 !rounded-button font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 transition-colors">
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16">
+            <h2 class="text-2xl font-semibold mb-8">Recently Purchased Art</h2>
+            <div class="grid grid-cols-4 gap-6" id="purchasedArt"></div>
+        </div>
+    </div>
+
+    <div id="notification" class="fixed top-4 right-4 bg-white shadow-lg rounded-lg p-4 transform translate-x-full transition-transform duration-300"></div>
+    <script>
+        const mockPurchases = [
+            {
+                image: "https://public.readdy.ai/ai/img_res/d051f802ea8de6807e658a6a00da8f90.jpg",
+                size: "A4",
+                artist: "Emma Thompson",
+                date: "2025-02-21"
+            },
+            {
+                image: "https://public.readdy.ai/ai/img_res/197f1ac5643c82cfde95545a7f40f24e.jpg",
+                size: "A3",
+                artist: "Michael Chen",
+                date: "2025-02-20"
+            },
+            {
+                image: "https://public.readdy.ai/ai/img_res/b4defa707060dff68549eebaa0dfcd1c.jpg",
+                size: "Letter",
+                artist: "Sarah Williams",
+                date: "2025-02-19"
+            },
+            {
+                image: "https://public.readdy.ai/ai/img_res/8bfdd4480afb9c176602240993fa7352.jpg",
+                size: "A4",
+                artist: "David Miller",
+                date: "2025-02-18"
+            }
+        ];
+
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add(type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800');
+            notification.style.transform = 'translateX(0)';
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+            }, 3000);
+        }
+
+        function renderPurchases() {
+            const container = document.getElementById('purchasedArt');
+            mockPurchases.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'border rounded-lg overflow-hidden group';
+                card.innerHTML = `
+                    <div class="relative">
+                        <img src="${item.image}" alt="Art" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <button class="bg-white text-gray-800 px-4 py-2 !rounded-button">View Details</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="font-medium">${item.artist}</div>
+                        <div class="text-gray-500 text-sm">Size: ${item.size}</div>
+                        <div class="text-gray-500 text-sm">Purchased: ${item.date}</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const dragArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            const previewArea = document.getElementById('previewArea');
+            const previewImage = document.getElementById('previewImage');
+            const removeImage = document.getElementById('removeImage');
+            const summaryContent = document.getElementById('summaryContent');
+            const noSelection = document.getElementById('noSelection');
+            const summaryImage = document.getElementById('summaryImage');
+            const selectedSize = document.getElementById('selectedSize');
+            const selectedPrice = document.getElementById('selectedPrice');
+            const totalPrice = document.getElementById('totalPrice');
+            const addToCartBtn = document.getElementById('addToCart');
+            const buyNowBtn = document.getElementById('buyNow');
+
+            renderPurchases();
+
+            dragArea.addEventListener('click', () => fileInput.click());
+            dragArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dragArea.classList.add('active');
+            });
+
+            dragArea.addEventListener('dragleave', () => {
+                dragArea.classList.remove('active');
+            });
+
+            dragArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dragArea.classList.remove('active');
+                const file = e.dataTransfer.files[0];
+                handleFile(file);
+            });
+
+            fileInput.addEventListener('change', () => {
+                const file = fileInput.files[0];
+                handleFile(file);
+            });
+
+            function handleFile(file) {
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        previewImage.src = reader.result;
+                        summaryImage.src = reader.result;
+                        previewArea.classList.remove('hidden');
+                        dragArea.classList.add('hidden');
+                        updateSummary();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            removeImage.addEventListener('click', () => {
+                previewArea.classList.add('hidden');
+                dragArea.classList.remove('hidden');
+                fileInput.value = '';
+                updateSummary();
+            });
+            document.querySelectorAll('input[name="size"]').forEach(radio => {
+                radio.addEventListener('change', updateSummary);
+            });
+
+            function updateSummary() {
+                const hasImage = !previewArea.classList.contains('hidden');
+                const selectedSizeInput = document.querySelector('input[name="size"]:checked');
+
+                if (hasImage && selectedSizeInput) {
+                    summaryContent.classList.remove('hidden');
+                    noSelection.classList.add('hidden');
+                    selectedSize.textContent = `Size: ${selectedSizeInput.value}`;
+                    const price = selectedSizeInput.dataset.price;
+                    selectedPrice.textContent = `$${price}`;
+                    totalPrice.textContent = `$${price}`;
+                    addToCartBtn.disabled = false;
+                    buyNowBtn.disabled = false;
+                } else {
+                    summaryContent.classList.add('hidden');
+                    noSelection.classList.remove('hidden');
+                    addToCartBtn.disabled = true;
+                    buyNowBtn.disabled = true;
+                }
+            }
+
+            addToCartBtn.addEventListener('click', () => {
+                showNotification('Added to cart successfully');
+            });
+
+            buyNowBtn.addEventListener('click', () => {
+                showNotification('Redirecting to checkout...');
+            });
+        });
+    </script>
+</body>
+</html>
