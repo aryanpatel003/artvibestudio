@@ -1,719 +1,511 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta content='width=device-width, initial-scale=1' name='viewport' />
-  <title>ArtGallery - Discover & Commission Amazing Artworks</title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: "#6366f1",
-            secondary: "#f59e0b",
-          },
-          borderRadius: {
-            none: "0px",
-            sm: "4px",
-            DEFAULT: "8px",
-            md: "12px",
-            lg: "16px",
-            xl: "20px",
-            "2xl": "24px",
-            "3xl": "32px",
-            full: "9999px",
-            button: "8px",
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Art Gallery - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      .form-input {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+      .form-input:focus {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 8px 16px -2px rgba(79, 70, 229, 0.1), 0 4px 8px -2px rgba(79, 70, 229, 0.06);
+        border-color: #4F46E5;
+      }
+      .form-input {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(8px);
+      }
+      @keyframes fadeIn {
+      from {
+      opacity: 0;
+      transform: translateX(30px);
+      }
+      to {
+      opacity: 1;
+      transform: translateX(0);
+      }
+      }
+      @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      }
+      @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      }
+      @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+      }
+      .animate-float {
+      animation: float 3s ease-in-out infinite;
+      }
+      .animate-pulse-slow {
+      animation: pulse 2s ease-in-out infinite;
+      }
+      .animate-shake {
+      animation: shake 0.5s ease-in-out;
+      }
+      .hover-shake:hover {
+      animation: shake 0.5s ease-in-out;
+      }
+      .form-input:focus {
+      background: rgba(255, 255, 255, 0.95);
+      }
+      .form-float-label {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      transition: all 0.2s;
+      pointer-events: none;
+      }
+      .form-input:focus ~ .form-float-label,
+      .form-input:not(:placeholder-shown) ~ .form-float-label {
+      transform: translateY(-1.5rem);
+      font-size: 0.875rem;
+      color: #4F46E5;
+      }
+      .password-strength {
+      height: 4px;
+      transition: all 0.3s;
+      }
+      @keyframes slideIn {
+      from {
+      opacity: 0;
+      transform: translateY(20px);
+      }
+      to {
+      opacity: 1;
+      transform: translateY(0);
+      }
+      }
+      @keyframes fadeIn {
+      from {
+      opacity: 0;
+      }
+      to {
+      opacity: 1;
+      }
+      }
+      .form-input, button, .form-float-label {
+      animation: fadeIn 0.3s ease-out;
+      }
+      #loginForm, #signupForm {
+      animation: slideIn 0.4s ease-out;
+      }
+      .active-tab, .inactive-tab {
+      transition: all 0.3s ease;
+      }
+      button:not(.active-tab):not(.inactive-tab) {
+      transition: all 0.2s ease;
+      transform: scale(1);
+      }
+      button:not(.active-tab):not(.inactive-tab):hover {
+      transform: scale(1.02);
+      }
+      button:not(.active-tab):not(.inactive-tab):active {
+      transform: scale(0.98);
+      }
+      .form-input {
+      transition: all 0.2s ease;
+      }
+      .form-input:focus {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.1), 0 2px 4px -1px rgba(79, 70, 229, 0.06);
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#4F46E5",
+              secondary: "#EC4899",
+            },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
           },
         },
-      },
-    };
-  </script>
-  <style>
-    :where([class^="ri-"])::before {
-      content: "\f3c2";
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .masonry-grid {
-      column-count: 3;
-      column-gap: 1.5rem;
-    }
-
-    .masonry-grid>div {
-      break-inside: avoid;
-      margin-bottom: 1.5rem;
-    }
-
-    @media (max-width: 1024px) {
-      .masonry-grid {
-        column-count: 2;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .masonry-grid {
-        column-count: 1;
-      }
-    }
-  </style>
-</head>
-
-<body class="min-h-screen bg-gray-50">
-  <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        <div class="flex items-center">
-          <a href="#" class="text-2xl font-['Pacifico'] text-primary">logo</a>
-        </div>
-        <div class="hidden md:flex items-center space-x-8">
-          <nav class="flex space-x-8">
-            <a href="#" class="text-gray-700 hover:text-primary">Gallery</a>
-            <a href="#" class="text-gray-700 hover:text-primary">Artists</a>
-            <a href="#" class="text-gray-700 hover:text-primary">Styles</a>
-            <a href="#" class="text-gray-700 hover:text-primary">Upload</a>
-          </nav>
-          <div class="relative">
-            <input type="text" placeholder="Search artworks, artists..."
-              class="w-64 pl-10 pr-4 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/20">
-            <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+      };
+    </script>
+  </head>
+  <body class="min-h-screen">
+    <div
+      class="flex min-h-screen bg-gradient-to-br from-indigo-50 via-white to-pink-50 bg-[size:400%_400%] animate-[gradient_15s_ease_infinite]"
+    >
+      <div class="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+        <div
+          class="absolute inset-0 bg-cover bg-center"
+          style="background-image: url('https://public.readdy.ai/ai/img_res/f9134a275651eedfd6c4db1b4a0adca9.jpg')"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent backdrop-blur-sm"
+        ></div>
+        <div class="relative z-10 flex flex-col justify-center px-16">
+          <h1
+            class="font-['Pacifico'] text-5xl text-primary mb-6 animate-float"
+          >
+            logo
+          </h1>
+          <p class="text-2xl font-light text-gray-700 mb-8">
+            Discover and collect extraordinary artworks from talented artists
+            worldwide.
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <div
+                class="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover-shake"
+              >
+                <i
+                  class="ri-palette-line text-primary text-2xl animate-pulse-slow"
+                ></i>
+              </div>
+              <p class="ml-4 text-gray-600">
+                Curated collection of contemporary art
+              </p>
+            </div>
+            <div class="flex items-center">
+              <div
+                class="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover-shake"
+              >
+                <i
+                  class="ri-shield-check-line text-primary text-2xl animate-pulse-slow"
+                ></i>
+              </div>
+              <p class="ml-4 text-gray-600">
+                Secure transactions and authenticity guaranteed
+              </p>
+            </div>
+            <div class="flex items-center">
+              <div
+                class="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover-shake"
+              >
+                <i
+                  class="ri-global-line text-primary text-2xl animate-pulse-slow"
+                ></i>
+              </div>
+              <p class="ml-4 text-gray-600">
+                Global community of artists and collectors
+              </p>
+            </div>
           </div>
-          <button class="flex items-center space-x-2 text-gray-700 hover:text-primary">
-            <i class="ri-user-line"></i>
-            <span><a href="Login\index.html target=" _self" target="_blank">Sign In </a></span>
-          </button>
         </div>
       </div>
-    </div>
-  </header>
-  <main class="pt-16">
-    <section class="relative bg-gradient-to-r from-indigo-500/10 to-purple-500/10 overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1 class="text-5xl font-bold text-gray-900 mb-6">Discover & Commission Amazing Artworks</h1>
-            <p class="text-xl text-gray-600 mb-8">Explore thousands of original artworks from talented artists
-              worldwide. Find your perfect piece or commission custom artwork.</p>
-            <div class="flex space-x-4">
-              <button class="bg-primary text-white px-8 py-3 rounded-button font-medium hover:bg-primary/90">Explore
-                Gallery</button>
+      <div
+        class="w-full lg:w-1/2 flex items-center justify-center p-8 animate-[fadeIn_0.8s_ease-out]"
+      >
+        <div
+          class="w-full max-w-xl bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-white/50"
+        >
+          <div class="flex justify-center mb-8">
+            <div class="inline-flex rounded-full p-1 bg-gray-100">
               <button
-                class="bg-white text-primary px-8 py-3 rounded-button font-medium border-2 border-primary hover:bg-primary/5">Commission
-                Art</button>
+                class="active-tab px-8 py-3 rounded-full text-base font-medium bg-white shadow-sm"
+              >
+                Login
+              </button>
+              <button
+                class="inactive-tab px-8 py-3 rounded-full text-base font-medium text-gray-500"
+              >
+                Sign Up
+              </button>
             </div>
           </div>
-          <div class="relative">
-              <img src="Photos\1.jpg" alt="Art Gallery" class="rounded-lg shadow-xl">
-            </a></a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="py-16 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-gray-900 mb-8">Popular Art Styles</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <a href="Sketches\index.html" >
-              <img src="Photos\P1.jpg" alt="Sketches" class="w-full h-64 object-cover">
-              <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="text-center">
-                <h3 class="text-white text-xl font-bold mb-2">Sketches</h3>
-                <p class="text-white/80">2,456 Artworks</p>
+          <div id="loginForm" class="space-y-6">
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+              >
+                <i class="ri-user-line text-gray-400 text-xl"></i>
               </div>
-              </div>
-            </a>
-            </div>
-            <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <a href="Paintings\index.html" class="pointer-events-none">
-              <img src="Photos\P2.jpg" alt="Paintings" class="w-full h-64 object-cover blur-sm ">
-              <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="text-center">
-                <h3 class="text-white text-xl font-bold mb-2">Paintings</h3>
-                <p class="text-white/80">Coming Soon</p>
-                </div>
-              </div>
-              </a>
-            </div>
-            <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <a href="DigitalArt\index.html" class="pointer-events-none">
-              <img src="Photos/P3.jpg" alt="Digital Art" class="w-full h-64 object-cover filter blur-sm " >
-              <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <div class="text-center">
-                <h3 class="text-white text-xl font-bold mb-2">Digital Art</h3>
-                <p class="text-white/80">Coming Soon</p>
-                </div>
-              </div>
-              </a>
-            </div>
-            <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-             <a href="Abstract\index.html" class="pointer-events-none"> 
-              <img src="Photos/P4.jpg" alt="Abstract" class="w-full h-64 object-cover filter blur-sm ">
-              <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <div class="text-center">
-                <h3 class="text-white text-xl font-bold mb-2">Abstract</h3>
-                <p class="text-white/80">Coming Soon</p>
-                </div>
-              </div>
-              </a>
-            </div>
-            </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="py-16 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center mb-8">
-          <h2 class="text-3xl font-bold text-gray-900">Featured Artworks</h2>
-          <div class="flex items-center space-x-4">
-            <button class="flex items-center space-x-2 px-4 py-2 rounded-button bg-gray-100 hover:bg-gray-200">
-              <i class="ri-filter-3-line"></i>
-              <span>Filter</span>
-            </button>
-            <button class="text-primary hover:text-primary/80">View All</button>
-          </div>
-        </div>
-        <div class="masonry-grid">
-          <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <img src="Photos/F1.jpg" alt="Landscape Art" class="w-full object-cover">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="absolute bottom-0 left-0 right-0 p-4">
-                <h3 class="text-white text-lg font-semibold mb-1">Mountain Serenity</h3>
-                <p class="text-white/80 text-sm mb-2">by Michael Chen</p>
-                <div class="flex items-center justify-between">
-                  <span class="text-white font-medium">$2,400</span>
-                  <button class="text-white hover:text-primary"><i class="ri-heart-line"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <img src="Photos/F4.jpg" alt="Digital Art" class="w-full object-cover">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="absolute bottom-0 left-0 right-0 p-4">
-                <h3 class="text-white text-lg font-semibold mb-1">Ethereal Guardian</h3>
-                <p class="text-white/80 text-sm mb-2">by Emily Anderson</p>
-                <div class="flex items-center justify-between">
-                  <span class="text-white font-medium">$1,800</span>
-                  <button class="text-white hover:text-primary"><i class="ri-heart-line"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <img src="Photos/F2.jpg" alt="Portrait" class="w-full object-cover">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="absolute bottom-0 left-0 right-0 p-4">
-                <h3 class="text-white text-lg font-semibold mb-1">Silent Contemplation</h3>
-                <p class="text-white/80 text-sm mb-2">by Sarah Miller</p>
-                <div class="flex items-center justify-between">
-                  <span class="text-white font-medium">$1,200</span>
-                  <button class="text-white hover:text-primary"><i class="ri-heart-line"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <img src="Photos/F5.jpg" alt="Abstract Art" class="w-full object-cover">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="absolute bottom-0 left-0 right-0 p-4">
-                <h3 class="text-white text-lg font-semibold mb-1">Geometric Harmony</h3>
-                <p class="text-white/80 text-sm mb-2">by David Thompson</p>
-                <div class="flex items-center justify-between">
-                  <span class="text-white font-medium">$3,200</span>
-                  <button class="text-white hover:text-primary"><i class="ri-heart-line"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <img src="Photos/F3.jpg" alt="City Scene" class="w-full object-cover">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="absolute bottom-0 left-0 right-0 p-4">
-                <h3 class="text-white text-lg font-semibold mb-1">Urban Poetry</h3>
-                <p class="text-white/80 text-sm mb-2">by Michael Chen</p>
-                <div class="flex items-center justify-between">
-                  <span class="text-white font-medium">$2,800</span>
-                  <button class="text-white hover:text-primary"><i class="ri-heart-line"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <img src="Photos/F6.jpg" alt="Surreal Art" class="w-full object-cover">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="absolute bottom-0 left-0 right-0 p-4">
-                <h3 class="text-white text-lg font-semibold mb-1">Digital Dreams</h3>
-                <p class="text-white/80 text-sm mb-2">by Emily Anderson</p>
-                <div class="flex items-center justify-between">
-                  <span class="text-white font-medium">$2,100</span>
-                  <button class="text-white hover:text-primary"><i class="ri-heart-line"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="py-16 bg-gradient-to-b from-white to-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div class="bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl p-8 md:p-12">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h2 class="text-3xl font-bold text-gray-900 mb-4">Art Marketplace Stats</h2>
-              <p class="text-gray-600 mb-8">Join our thriving community of artists and art lovers</p>
-              <div class="grid grid-cols-2 gap-6">
-                <div>
-                  <div class="text-4xl font-bold text-primary mb-2">15K+</div>
-                  <p class="text-gray-600">Active Artists</p>
-                </div>
-                <div>
-                  <div class="text-4xl font-bold text-primary mb-2">50K+</div>
-                  <p class="text-gray-600">Artworks Sold</p>
-                </div>
-                <div>
-                  <div class="text-4xl font-bold text-primary mb-2">98%</div>
-                  <p class="text-gray-600">Satisfaction Rate</p>
-                </div>
-                <div>
-                  <div class="text-4xl font-bold text-primary mb-2">$2M+</div>
-                  <p class="text-gray-600">Artist Earnings</p>
-                </div>
-              </div>
+              <input
+                type="email"
+                class="form-input block w-full pl-12 pr-4 py-4 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                placeholder=" "
+              />
+              <label class="form-float-label text-gray-500">Email</label>
             </div>
             <div class="relative">
-              <img src="Photos/A1.jpg" alt="Gallery Stats" class="rounded-xl shadow-xl">
-              <div class="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-lg p-4">
-                <div class="flex items-center space-x-2">
-                  <i class="ri-shield-star-fill text-2xl text-primary"></i>
-                  <div>
-                    <div class="font-semibold text-gray-900">Trusted Platform</div>
-                    <div class="text-sm text-gray-500">Verified Artists & Secure Payments</div>
-                  </div>
-                </div>
+              <div
+                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+              >
+                <i class="ri-lock-line text-gray-400 text-xl"></i>
               </div>
+              <input
+                type="password"
+                class="form-input block w-full pl-12 pr-12 py-4 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                placeholder=" "
+              />
+              <label class="form-float-label text-gray-500">Password</label>
+              <button
+                type="button"
+                class="absolute inset-y-0 right-0 pr-3 flex items-center"
+              >
+                <i class="ri-eye-line text-gray-400 text-xl"></i>
+              </button>
+            </div>
+            <div class="flex items-center justify-between">
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  class="h-5 w-5 text-primary border-gray-300 rounded"
+                />
+                <span class="ml-2 text-sm text-gray-600">Remember me</span>
+              </label>
+              <a href="#" class="text-sm text-primary hover:text-primary/80"
+                >Forgot password?</a
+              >
+            </div>
+            <button
+              class="w-full bg-primary text-white py-4 text-lg font-medium rounded-button hover:bg-primary/90 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_4px_14px_0_rgba(79,70,229,0.4)] hover:shadow-[0_6px_20px_rgba(79,70,229,0.6)] group"
+            >
+              <i
+                class="ri-login-circle-line mr-2 group-hover:animate-shake inline-block"
+              ></i>
+              <span class="group-hover:animate-shake inline-block">Login</span>
+            </button>
+            <div class="relative my-8">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-300"></div>
+              </div>
+              <div class="relative flex justify-center text-sm">
+                <span class="px-4 bg-white text-gray-500"
+                  >Or continue with</span
+                >
+              </div>
+            </div>
+            <div
+              class="grid grid-cols-3 gap-4 [&>button]:transition-all [&>button]:duration-300 [&>button]:hover:shadow-lg [&>button]:hover:scale-105 [&>button]:active:scale-95"
+            >
+              <button
+                class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-button hover:border-gray-400 transition-all duration-300 bg-white"
+              >
+                <i class="ri-google-fill text-xl"></i>
+              </button>
+              <button
+                class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-button hover:border-gray-400 transition-all duration-300 bg-white"
+              >
+                <i class="ri-apple-fill text-xl"></i>
+              </button>
+              <button
+                class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-button hover:border-gray-400 transition-all duration-300 bg-white"
+              >
+                <i class="ri-facebook-fill text-xl"></i>
+              </button>
             </div>
           </div>
-        </div>
-      </div>
-      <section class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex justify-between items-center mb-8">
-            <h2 class="text-3xl font-bold text-gray-900">Featured Artists</h2>
-            <button class="text-primary hover:text-primary/80">View All</button>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-white rounded-lg shadow-lg p-6">
-              <div class="flex items-center space-x-4 mb-4">
-                <img src="https://public.readdy.ai/ai/img_res/b66b87fa009c0bec0da17dcdccdb80fd.jpg" alt="Artist"
-                  class="w-16 h-16 rounded-full object-cover">
-                <div>
-                  <h3 class="font-semibold text-gray-900">Emily Anderson</h3>
-                  <p class="text-sm text-gray-500">Digital Artist</p>
-                </div>
+          <div id="signupForm" class="hidden space-y-6">
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+              >
+                <i class="ri-user-line text-gray-400 text-xl"></i>
               </div>
-              <div class="flex items-center space-x-2 mb-4">
-                <div class="flex text-yellow-400">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-half-fill"></i>
-                </div>
-                <span class="text-sm text-gray-500">(4.5)</span>
-              </div>
-              <p class="text-sm text-gray-600 mb-4">Specializing in digital illustrations and concept art with a focus
-                on fantasy and sci-fi themes.</p>
-              <button class="w-full bg-primary/10 text-primary px-4 py-2 rounded-button hover:bg-primary/20">View
-                Portfolio</button>
+              <input
+                type="text"
+                class="form-input block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                placeholder=" "
+              />
+              <label class="form-float-label text-gray-500">Username</label>
             </div>
-            <div class="bg-white rounded-lg shadow-lg p-6">
-              <div class="flex items-center space-x-4 mb-4">
-                <img src="https://public.readdy.ai/ai/img_res/1f8703fd715ddba8fc02217e111d7906.jpg" alt="Artist"
-                  class="w-16 h-16 rounded-full object-cover">
-                <div>
-                  <h3 class="font-semibold text-gray-900">Michael Chen</h3>
-                  <p class="text-sm text-gray-500">Traditional Painter</p>
-                </div>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+              >
+                <i class="ri-mail-line text-gray-400"></i>
               </div>
-              <div class="flex items-center space-x-2 mb-4">
-                <div class="flex text-yellow-400">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                </div>
-                <span class="text-sm text-gray-500">(5.0)</span>
-              </div>
-              <p class="text-sm text-gray-600 mb-4">Master of oil painting with over 15 years of experience in portrait
-                and landscape art.</p>
-              <button class="w-full bg-primary/10 text-primary px-4 py-2 rounded-button hover:bg-primary/20">View
-                Portfolio</button>
+              <input
+                type="email"
+                class="form-input block w-full pl-12 pr-4 py-4 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                placeholder=" "
+              />
+              <label class="form-float-label text-gray-500">Email</label>
             </div>
-            <div class="bg-white rounded-lg shadow-lg p-6">
-              <div class="flex items-center space-x-4 mb-4">
-                <img src="https://public.readdy.ai/ai/img_res/a48a9b89804045878d074076b5cbaa1c.jpg" alt="Artist"
-                  class="w-16 h-16 rounded-full object-cover">
-                <div>
-                  <h3 class="font-semibold text-gray-900">Sarah Miller</h3>
-                  <p class="text-sm text-gray-500">Sketch Artist</p>
+            <div class="space-y-2">
+              <div class="relative">
+                <div
+                  class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+                >
+                  <i class="ri-lock-line text-gray-400 text-xl"></i>
                 </div>
-              </div>
-              <div class="flex items-center space-x-2 mb-4">
-                <div class="flex text-yellow-400">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-line"></i>
-                </div>
-                <span class="text-sm text-gray-500">(4.0)</span>
-              </div>
-              <p class="text-sm text-gray-600 mb-4">Specializing in realistic pencil portraits and figure drawings with
-                attention to detail.</p>
-              <button class="w-full bg-primary/10 text-primary px-4 py-2 rounded-button hover:bg-primary/20">View
-                Portfolio</button>
-            </div>
-            <div class="bg-white rounded-lg shadow-lg p-6">
-              <div class="flex items-center space-x-4 mb-4">
-                <img src="https://public.readdy.ai/ai/img_res/ecc446eebd6b8fe103cf58a887561b73.jpg" alt="Artist"
-                  class="w-16 h-16 rounded-full object-cover">
-                <div>
-                  <h3 class="font-semibold text-gray-900">David Thompson</h3>
-                  <p class="text-sm text-gray-500">Abstract Artist</p>
-                </div>
-              </div>
-              <div class="flex items-center space-x-2 mb-4">
-                <div class="flex text-yellow-400">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-half-fill"></i>
-                </div>
-                <span class="text-sm text-gray-500">(4.5)</span>
-              </div>
-              <p class="text-sm text-gray-600 mb-4">Creating bold and vibrant abstract compositions using mixed media
-                and innovative techniques.</p>
-              <button class="w-full bg-primary/10 text-primary px-4 py-2 rounded-button hover:bg-primary/20">View
-                Portfolio</button>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-12">
-            <span class="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">Custom
-              Artwork</span>
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Commission Your Art</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">Transform your ideas into beautiful custom artwork. Our talented
-              artists will work closely with you to create something truly unique and meaningful.</p>
-          </div>
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div class="bg-gray-50 rounded-lg p-8">
-                <div class="mb-6">
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Upload Reference Image</label>
-                  <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                    <i class="ri-upload-cloud-line text-4xl text-gray-400 mb-2"></i>
-                    <p class="text-sm text-gray-500">Drag and drop your image here, or click to browse</p>
-                  </div>
-                </div>
-                <div class="mb-6">
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Select Size</label>
-                  <div class="grid grid-cols-3 gap-4">
-                    <button class="border-2 border-gray-200 rounded-button p-4 text-center hover:border-primary">
-                      <span class="block font-medium">Small</span>
-                      <span class="text-sm text-gray-500">8" x 10"</span>
-                    </button>
-                    <button class="border-2 border-gray-200 rounded-button p-4 text-center hover:border-primary">
-                      <span class="block font-medium">Medium</span>
-                      <span class="text-sm text-gray-500">12" x 16"</span>
-                    </button>
-                    <button class="border-2 border-gray-200 rounded-button p-4 text-center hover:border-primary">
-                      <span class="block font-medium">Large</span>
-                      <span class="text-sm text-gray-500">16" x 20"</span>
-                    </button>
-                  </div>
-                </div>
-                <div class="mb-6">
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Art Style</label>
-                  <div class="grid grid-cols-2 gap-4">
-                    <button class="border-2 border-gray-200 rounded-button p-4 text-center hover:border-primary">
-                      <span class="block font-medium">Realistic</span>
-                      <span class="text-sm text-gray-500">Detailed & Life-like</span>
-                    </button>
-                    <button class="border-2 border-gray-200 rounded-button p-4 text-center hover:border-primary">
-                      <span class="block font-medium">Stylized</span>
-                      <span class="text-sm text-gray-500">Artistic & Creative</span>
-                    </button>
-                  </div>
-                </div>
+                <input
+                  type="password"
+                  class="form-input block w-full pl-12 pr-12 py-4 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                  placeholder=" "
+                />
+                <label class="form-float-label text-gray-500">Password</label>
                 <button
-                  class="w-full bg-primary text-white px-8 py-3 rounded-button font-medium hover:bg-primary/90">Get
-                  Quote</button>
+                  type="button"
+                  class="absolute inset-y-0 right-0 pr-3 flex items-center"
+                >
+                  <i class="ri-eye-line text-gray-400 text-xl"></i>
+                </button>
+              </div>
+              <div class="flex space-x-1">
+                <div
+                  class="password-strength flex-1 bg-gray-200 rounded-full"
+                ></div>
+                <div
+                  class="password-strength flex-1 bg-gray-200 rounded-full"
+                ></div>
+                <div
+                  class="password-strength flex-1 bg-gray-200 rounded-full"
+                ></div>
+                <div
+                  class="password-strength flex-1 bg-gray-200 rounded-full"
+                ></div>
+              </div>
+              <p class="text-xs text-gray-500">
+                Password must be at least 8 characters long
+              </p>
+            </div>
+            <button
+              class="w-full bg-primary text-white py-4 text-lg font-medium rounded-button hover:bg-primary/90 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_4px_14px_0_rgba(79,70,229,0.4)] hover:shadow-[0_6px_20px_rgba(79,70,229,0.6)] group"
+            >
+              <i
+                class="ri-user-add-line mr-2 group-hover:animate-shake inline-block"
+              ></i>
+              <span class="group-hover:animate-shake inline-block"
+                >Create Account</span
+              >
+            </button>
+            <div class="relative my-8">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-300"></div>
+              </div>
+              <div class="relative flex justify-center text-sm">
+                <span class="px-4 bg-white text-gray-500"
+                  >Or continue with</span
+                >
               </div>
             </div>
-            <div>
-              <img src="Photos/C1.jpg" alt="Commission Art" class="rounded-lg shadow-xl">
-              <div class="mt-8">
-                <h3 class="text-xl font-semibold text-gray-900 mb-4">Why Commission with Us?</h3>
-                <ul class="space-y-4">
-                  <li class="flex items-start">
-                    <i class="ri-check-line text-green-500 mt-1"></i>
-                    <span class="ml-2">Work with professional artists specialized in your preferred style</span>
-                  </li>
-                  <li class="flex items-start">
-                    <i class="ri-check-line text-green-500 mt-1"></i>
-                    <span class="ml-2">100% satisfaction guarantee with unlimited revisions</span>
-                  </li>
-                  <li class="flex items-start">
-                    <i class="ri-check-line text-green-500 mt-1"></i>
-                    <span class="ml-2">Secure payment and clear communication throughout the process</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="py-16 bg-gradient-to-b from-white to-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">Read what art lovers and collectors have to say about their
-              experience with our platform and artists.</p>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white rounded-xl shadow-lg p-6">
-              <div class="flex items-center mb-4">
-                <img src="https://public.readdy.ai/ai/img_res/037cdb8b18c6d6bb6541979f63c042db.jpg" alt="Client"
-                  class="w-12 h-12 rounded-full">
-                <div class="ml-4">
-                  <h4 class="font-semibold text-gray-900">Jennifer Wilson</h4>
-                  <p class="text-sm text-gray-500">Art Collector</p>
-                </div>
-              </div>
-              <div class="flex text-yellow-400 mb-4">
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-              </div>
-              <p class="text-gray-600">"The commissioned portrait exceeded my expectations. The artist captured every
-                detail perfectly and was a pleasure to work with throughout the process."</p>
-            </div>
-            <div class="bg-white rounded-xl shadow-lg p-6">
-              <div class="flex items-center mb-4">
-                <img src="https://public.readdy.ai/ai/img_res/e6c2ce5b9e3001deab7eab5c0b7dacb4.jpg" alt="Client"
-                  class="w-12 h-12 rounded-full">
-                <div class="ml-4">
-                  <h4 class="font-semibold text-gray-900">Robert Chen</h4>
-                  <p class="text-sm text-gray-500">Interior Designer</p>
-                </div>
-              </div>
-              <div class="flex text-yellow-400 mb-4">
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-half-fill"></i>
-              </div>
-              <p class="text-gray-600">"Found the perfect pieces for my client's space. The quality of artwork and
-                customer service is outstanding. Will definitely be coming back!"</p>
-            </div>
-            <div class="bg-white rounded-xl shadow-lg p-6">
-              <div class="flex items-center mb-4">
-                <img src="https://public.readdy.ai/ai/img_res/e1321bd5494358adaae9734192069d48.jpg" alt="Client"
-                  class="w-12 h-12 rounded-full">
-                <div class="ml-4">
-                  <h4 class="font-semibold text-gray-900">Sarah Martinez</h4>
-                  <p class="text-sm text-gray-500">Gallery Owner</p>
-                </div>
-              </div>
-              <div class="flex text-yellow-400 mb-4">
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-              </div>
-              <p class="text-gray-600">"As a gallery owner, I appreciate the platform's curation and professionalism.
-                It's been fantastic working with such talented artists."</p>
+            <div
+              class="grid grid-cols-3 gap-4 [&>button]:transition-all [&>button]:duration-300 [&>button]:hover:shadow-lg [&>button]:hover:scale-105 [&>button]:active:scale-95"
+            >
+              <button
+                class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-button hover:border-gray-400 transition-all duration-300 bg-white"
+              >
+                <i class="ri-google-fill text-xl"></i>
+              </button>
+              <button
+                class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-button hover:border-gray-400 transition-all duration-300 bg-white"
+              >
+                <i class="ri-apple-fill text-xl"></i>
+              </button>
+              <button
+                class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-button hover:border-gray-400 transition-all duration-300 bg-white"
+              >
+                <i class="ri-facebook-fill text-xl"></i>
+              </button>
             </div>
           </div>
-        </div>
-      </section>
-  </main>
-  <footer class="bg-gray-900 text-white py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div>
-          <a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 block">logo</a>
-          <p class="text-gray-400">Discover and commission amazing artworks from talented artists worldwide.</p>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-          <ul class="space-y-2">
-            <li><a href="#" class="text-gray-400 hover:text-white">Gallery</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Artists</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Commission Art</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Support</h3>
-          <ul class="space-y-2">
-            <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
-          <p class="text-gray-400 mb-4">Subscribe to get updates on new artworks and special offers.</p>
-          <div class="flex">
-            <input type="email" placeholder="Your email"
-              class="flex-1 bg-gray-800 text-white px-4 py-2 rounded-l-button focus:outline-none">
-            <button class="bg-primary text-white px-4 py-2 rounded-r-button hover:bg-primary/90">Subscribe</button>
+          <div class="mt-8 text-center text-sm text-gray-500">
+            By continuing, you agree to our
+            <a href="#" class="text-primary hover:underline"
+              >Terms of Service</a
+            >
+            and
+            <a href="#" class="text-primary hover:underline">Privacy Policy</a>
           </div>
-        </div>
-      </div>
-      <div class="border-t border-gray-800 mt-12 pt-8 flex justify-between items-center">
-        <p class="text-gray-400">&copy; 2025 ArtGallery. All rights reserved.</p>
-        <div class="flex space-x-4">
-          <a href="#" class="text-gray-400 hover:text-white"><i class="ri-facebook-fill"></i></a>
-          <a href="#" class="text-gray-400 hover:text-white"><i class="ri-twitter-fill"></i></a>
-          <a href="#" class="text-gray-400 hover:text-white"><i class="ri-instagram-fill"></i></a>
-          <a href="#" class="text-gray-400 hover:text-white"><i class="ri-pinterest-fill"></i></a>
         </div>
       </div>
     </div>
-  </footer>
-  <script>
-    const mockArtStats = {
-      activeArtists: 15482,
-      artworksSold: 52749,
-      satisfactionRate: 98.3,
-      artistEarnings: 2157893,
-    };
-    function animateValue(obj, start, end, duration) {
-      let startTimestamp = null;
-      const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        obj.innerHTML = Math.floor(
-          progress * (end - start) + start,
-        ).toLocaleString();
-        if (progress < 1) {
-          window.requestAnimationFrame(step);
-        }
-      };
-      window.requestAnimationFrame(step);
-    }
-    document.addEventListener("DOMContentLoaded", function () {
-      const statsElements = document.querySelectorAll('[class*="text-4xl"]');
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const value = parseInt(
-                entry.target.textContent.replace(/[^0-9]/g, ""),
-              );
-              animateValue(entry.target, 0, value, 2000);
-              observer.unobserve(entry.target);
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const loginTab = document.querySelector(".active-tab");
+        const signupTab = document.querySelector(".inactive-tab");
+        const loginForm = document.getElementById("loginForm");
+        const signupForm = document.getElementById("signupForm");
+        loginTab.addEventListener("click", () => {
+          loginTab.classList.add("bg-white", "shadow-sm");
+          loginTab.classList.remove("text-gray-500");
+          signupTab.classList.remove("bg-white", "shadow-sm");
+          signupTab.classList.add("text-gray-500");
+          signupForm.style.display = "none";
+          loginForm.style.display = "block";
+          loginForm.style.animation = "slideIn 0.4s ease-out";
+        });
+        signupTab.addEventListener("click", () => {
+          signupTab.classList.add("bg-white", "shadow-sm");
+          signupTab.classList.remove("text-gray-500");
+          loginTab.classList.remove("bg-white", "shadow-sm");
+          loginTab.classList.add("text-gray-500");
+          loginForm.style.display = "none";
+          signupForm.style.display = "block";
+          signupForm.style.animation = "slideIn 0.4s ease-out";
+        });
+        const passwordInputs = document.querySelectorAll('input[type="password"]');
+        const toggleButtons = document.querySelectorAll(".ri-eye-line");
+        toggleButtons.forEach((button, index) => {
+          button.addEventListener("click", () => {
+            const input = passwordInputs[index];
+            if (input.type === "password") {
+              input.type = "text";
+              button.classList.remove("ri-eye-line");
+              button.classList.add("ri-eye-off-line");
+            } else {
+              input.type = "password";
+              button.classList.remove("ri-eye-off-line");
+              button.classList.add("ri-eye-line");
             }
           });
-        },
-        { threshold: 0.5 },
-      );
-      statsElements.forEach((el) => observer.observe(el));
-      const heartButtons = document.querySelectorAll(".ri-heart-line");
-      heartButtons.forEach((button) => {
-        button.addEventListener("click", function (e) {
-          e.preventDefault();
-          this.classList.toggle("ri-heart-line");
-          this.classList.toggle("ri-heart-fill");
-          this.classList.toggle("text-primary");
+        });
+        const signupPassword = signupForm.querySelector('input[type="password"]');
+        const strengthBars = document.querySelectorAll(".password-strength");
+        signupPassword.addEventListener("input", () => {
+          const password = signupPassword.value;
+          let strength = 0;
+          if (password.length >= 8) strength++;
+          if (password.match(/[A-Z]/)) strength++;
+          if (password.match(/[0-9]/)) strength++;
+          if (password.match(/[^A-Za-z0-9]/)) strength++;
+          strengthBars.forEach((bar, index) => {
+            if (index < strength) {
+              bar.style.backgroundColor = [
+                "#EF4444",
+                "#F59E0B",
+                "#10B981",
+                "#059669",
+              ][strength - 1];
+            } else {
+              bar.style.backgroundColor = "#E5E7EB";
+            }
+          });
         });
       });
-      const uploadArea = document.querySelector(".border-dashed");
-      const sizeButtons = document.querySelectorAll(
-        '[class*="border-2 border-gray-200"]',
-      );
-      uploadArea.addEventListener("click", function () {
-        const input = document.createElement("input");
-        input.type = "file";
-        input.accept = "image/*";
-        input.onchange = function (e) {
-          const file = e.target.files[0];
-          if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-              uploadArea.innerHTML = `
-<img src="${e.target.result}" class="max-h-32 mx-auto mb-2">
-<p class="text-sm text-gray-500">${file.name}</p>
-`;
-            };
-            reader.readAsDataURL(file);
-          }
-        };
-        input.click();
-      });
-      uploadArea.addEventListener("dragover", function (e) {
-        e.preventDefault();
-        this.classList.add("border-primary");
-      });
-      uploadArea.addEventListener("dragleave", function (e) {
-        e.preventDefault();
-        this.classList.remove("border-primary");
-      });
-      uploadArea.addEventListener("drop", function (e) {
-        e.preventDefault();
-        this.classList.remove("border-primary");
-        const file = e.dataTransfer.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = function (e) {
-            uploadArea.innerHTML = `
-<img src="${e.target.result}" class="max-h-32 mx-auto mb-2">
-<p class="text-sm text-gray-500">${file.name}</p>
-`;
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-      sizeButtons.forEach((button) => {
-        button.addEventListener("click", function () {
-          sizeButtons.forEach((btn) => btn.classList.remove("border-primary"));
-          this.classList.add("border-primary");
-        });
-      });
-    });
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
