@@ -91,7 +91,7 @@
           </div>
           <button class="flex items-center space-x-2 text-gray-700 hover:text-primary">
             <i class="ri-user-line"></i>
-           <span><a href="Login\index.html" target="_blank">Sign In </a></span>
+            <span><a href="Login\index.html" _self target="_blank">Sign In </a></span>
           </button>
         </div>
       </div>
@@ -114,7 +114,7 @@
             </div>
           </div>
           <div class="relative">
-            <img src="Photos/1.jpg" alt="Art Gallery" class="rounded-lg shadow-xl" loading="lazy">
+              <img src="Photos/1.jpg" alt="Art Gallery" class="rounded-lg shadow-xl">
             </a></a>
           </div>
         </div>
@@ -126,7 +126,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
             <a href="Sketches\index.html" >
-              <img src="Photos\P1.jpg" alt="Sketches" class="w-full h-64 object-cover">
+              <img src="Photos/P1.jpg" alt="Sketches" class="w-full h-64 object-cover">
               <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
               <div class="text-center">
                 <h3 class="text-white text-xl font-bold mb-2">Sketches</h3>
@@ -137,7 +137,7 @@
             </div>
             <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
               <a href="Paintings\index.html" class="pointer-events-none">
-              <img src="Photos\P2.jpg" alt="Paintings" class="w-full h-64 object-cover blur-sm ">
+              <img src="Photos/P2.jpg" alt="Paintings" class="w-full h-64 object-cover blur-sm ">
               <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
               <div class="text-center">
                 <h3 class="text-white text-xl font-bold mb-2">Paintings</h3>
@@ -613,8 +613,12 @@
       </div>
     </div>
   </footer>
-  <script>
-    const mockArtStats = {
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+  <script src="script.js"></script>
+   <script> const mockArtStats = {
       activeArtists: 15482,
       artworksSold: 52749,
       satisfactionRate: 98.3,
