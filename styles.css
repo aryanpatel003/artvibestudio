@@ -1,0 +1,25 @@
+/* Make images responsive */
+img {
+    max-width: 100%; /* Ensures image does not exceed its container */
+    height: auto; /* Maintains aspect ratio */
+    display: block; /* Removes extra space below images */
+    margin: 0 auto; /* Centers the image */
+}
+
+/* Make text fit properly on mobile */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px; /* Adjust text size */
+    }
+    img {
+        width: 100%; /* Ensures images take full width on small screens */
+    }
+}
