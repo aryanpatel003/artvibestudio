@@ -75,25 +75,41 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <div class="flex items-center">
-          <a href=""></a>
+          <a href="#" class="flex items-center">
             <img src="Photos/Logo.jpg" alt="logo" class="h-16">
           </a>
         </div>
-        <div class="hidden md:flex items-center space-x-8">
-          <nav class="flex space-x-8">
-            <a href="#" class="text-gray-700 hover:text-primary">Gallery</a>
-            <a href="#" class="text-gray-700 hover:text-primary">Artists</a>
-            <a href="#" class="text-gray-700 hover:text-primary">Styles</a>
-            <a href="#" class="text-gray-700 hover:text-primary">Upload</a>
+        <div class="flex items-center space-x-8">
+          <button id="hamburger" class="md:hidden flex items-center" aria-label="Toggle navigation">
+            <span class="block w-8 h-1 bg-gray-700 mb-1"></span>
+            <span class="block w-8 h-1 bg-gray-700 mb-1"></span>
+            <span class="block w-8 h-1 bg-gray-700"></span>
+          </button>
+
+          <nav id="nav-links" class="hidden md:flex space-x-8" aria-label="Main navigation">
+            <a href="#" class="text-gray-900 hover:text-primary font-semibold">Home</a>
+            <a href="#" class="text-gray-900 hover:text-primary font-semibold">Gallery</a>
+            <a href="#" class="text-gray-900 hover:text-primary font-semibold">Artists</a>
+            <a href="#" class="text-gray-900 hover:text-primary font-semibold">Commission Art</a>
+            <a href="#" class="text-gray-900 hover:text-primary font-semibold">About Us</a>
+          </nav>
+          <nav id="mobile-menu" class="md:hidden">
+            <ul class="flex flex-col space-y-2">
+              <li><a href="#" class="text-gray-900 hover:text-primary font-semibold">Home</a></li>
+              <li><a href="#" class="text-gray-900 hover:text-primary font-semibold">Gallery</a></li>
+              <li><a href="#" class="text-gray-900 hover:text-primary font-semibold">Artists</a></li>
+              <li><a href="#" class="text-gray-900 hover:text-primary font-semibold">Commission Art</a></li>
+              <li><a href="#" class="text-gray-900 hover:text-primary font-semibold">About Us</a></li>
+            </ul>
           </nav>
           <div class="relative">
-            <input type="text" placeholder="Search artworks, artists..."
+            <input type="text" placeholder="Search artworks, artists, styles..."
               class="w-64 pl-10 pr-4 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/20">
             <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
           </div>
-          <button class="flex items-center space-x-2 text-gray-700 hover:text-primary">
+          <button class="flex items-center space-x-2 text-gray-900 hover:text-primary font-semibold">
             <i class="ri-user-line"></i>
-            <span><a href="Login/index.html" target="_self">Sign In</a></span>
+            <span><a href="Login/index.html" target="_self" class="text-gray-900 hover:text-primary font-semibold">Sign In</a></span>
           </button>
         </div>
       </div>
