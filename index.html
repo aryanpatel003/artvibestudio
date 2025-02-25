@@ -1,711 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta content='width=device-width, initial-scale=1' name='viewport' />
-  <title>ArtGallery - Discover & Commission Amazing Artworks</title>
- <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: "#6366f1",
-            secondary: "#f59e0b",
-          },
-          borderRadius: {
-            none: "0px",
-            sm: "4px",
-            DEFAULT: "8px",
-            md: "12px",
-            lg: "16px",
-            xl: "20px",
-            "2xl": "24px",
-            "3xl": "32px",
-            full: "9999px",
-            button: "8px",
-          },
-        },
-      },
-    };
-  </script>
-  <style>
-    :where([class^="ri-"])::before {
-      content: "\f3c2";
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .masonry-grid {
-      column-count: 3;
-      column-gap: 1.5rem;
-    }
-
-    .masonry-grid>div {
-      break-inside: avoid;
-      margin-bottom: 1.5rem;
-    }
-
-    @media (max-width: 1024px) {
-      .masonry-grid {
-        column-count: 2;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .masonry-grid {
-        column-count: 1;
-      }
-    }
-  </style>
-</head>
-
-<body class="min-h-screen bg-gray-50">
-<header class="bg-white shadow-md p-4">
-        <div class="container mx-auto flex justify-between items-center">
-          
-         </div>
-          <button class="flex items-center space-x-2 text-gray-700 hover:text-primary">
-            <i class="ri-user-line"></i>
-            <span> <a href="Login\index.html" _self target="_blank">Sign In </a></span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
-  <main class="pt-16">
-    <section class="relative bg-gradient-to-r from-indigo-500/10 to-purple-500/10 overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1 class="text-5xl font-bold text-gray-900 mb-6">Discover & Commission Amazing Artworks</h1>
-            <p class="text-xl text-gray-600 mb-8">Explore thousands of original artworks from talented artists
-              worldwide. Find your perfect piece or commission custom artwork.</p>
-            <div class="flex space-x-4">
-              <button class="bg-primary text-white px-8 py-3 rounded-button font-medium hover:bg-primary/90">Explore
-                Gallery</button>
-              <button
-                class="bg-white text-primary px-8 py-3 rounded-button font-medium border-2 border-primary hover:bg-primary/5">Commission
-                Art</button>
-            </div>
-          </div>
-          <div class="relative">
-              <img src="Photos/1.jpg" alt="Art Gallery" class="rounded-lg shadow-xl">
-            </a></a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="py-16 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-gray-900 mb-8">Popular Art Styles</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <a href="Sketches\index.html" >
-              <img src="Photos/P1.jpg" alt="Sketches" class="w-full h-64 object-cover">
-              <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="text-center">
-                <h3 class="text-white text-xl font-bold mb-2">Sketches</h3>
-                <p class="text-white/80">2,456 Artworks</p>
-              </div>
-              </div>
-            </a>
-            </div>
-            <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <a href="Paintings\index.html" class="pointer-events-none">
-              <img src="Photos/P2.jpg" alt="Paintings" class="w-full h-64 object-cover blur-sm ">
-              <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="text-center">
-                <h3 class="text-white text-xl font-bold mb-2">Paintings</h3>
-                <p class="text-white/80">Coming Soon</p>
-                </div>
-              </div>
-              </a>
-            </div>
-            <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <a href="DigitalArt\index.html" class="pointer-events-none">
-              <img src="Photos/P3.jpg" alt="Digital Art" class="w-full h-64 object-cover filter blur-sm " >
-              <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <div class="text-center">
-                <h3 class="text-white text-xl font-bold mb-2">Digital Art</h3>
-                <p class="text-white/80">Coming Soon</p>
-                </div>
-              </div>
-              </a>
-            </div>
-            <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-             <a href="Abstract\index.html" class="pointer-events-none"> 
-              <img src="Photos/P4.jpg" alt="Abstract" class="w-full h-64 object-cover filter blur-sm ">
-              <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <div class="text-center">
-                <h3 class="text-white text-xl font-bold mb-2">Abstract</h3>
-                <p class="text-white/80">Coming Soon</p>
-                </div>
-              </div>
-              </a>
-            </div>
-            </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="py-16 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center mb-8">
-          <h2 class="text-3xl font-bold text-gray-900">Featured Artworks</h2>
-          <div class="flex items-center space-x-4">
-            <button class="flex items-center space-x-2 px-4 py-2 rounded-button bg-gray-100 hover:bg-gray-200">
-              <i class="ri-filter-3-line"></i>
-              <span>Filter</span>
-            </button>
-            <button class="text-primary hover:text-primary/80">View All</button>
-          </div>
-        </div>
-        <div class="masonry-grid">
-          <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <img src="Photos/F1.jpg" alt="Landscape Art" class="w-full object-cover">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="absolute bottom-0 left-0 right-0 p-4">
-                <h3 class="text-white text-lg font-semibold mb-1">Mountain Serenity</h3>
-                <p class="text-white/80 text-sm mb-2">by Michael Chen</p>
-                <div class="flex items-center justify-between">
-                  <span class="text-white font-medium">$2,400</span>
-                  <button class="text-white hover:text-primary"><i class="ri-heart-line"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <img src="Photos/F4.jpg" alt="Digital Art" class="w-full object-cover">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="absolute bottom-0 left-0 right-0 p-4">
-                <h3 class="text-white text-lg font-semibold mb-1">Ethereal Guardian</h3>
-                <p class="text-white/80 text-sm mb-2">by Emily Anderson</p>
-                <div class="flex items-center justify-between">
-                  <span class="text-white font-medium">$1,800</span>
-                  <button class="text-white hover:text-primary"><i class="ri-heart-line"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <img src="Photos/F2.jpg" alt="Portrait" class="w-full object-cover">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="absolute bottom-0 left-0 right-0 p-4">
-                <h3 class="text-white text-lg font-semibold mb-1">Silent Contemplation</h3>
-                <p class="text-white/80 text-sm mb-2">by Sarah Miller</p>
-                <div class="flex items-center justify-between">
-                  <span class="text-white font-medium">$1,200</span>
-                  <button class="text-white hover:text-primary"><i class="ri-heart-line"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <img src="Photos/F5.jpg" alt="Abstract Art" class="w-full object-cover">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="absolute bottom-0 left-0 right-0 p-4">
-                <h3 class="text-white text-lg font-semibold mb-1">Geometric Harmony</h3>
-                <p class="text-white/80 text-sm mb-2">by David Thompson</p>
-                <div class="flex items-center justify-between">
-                  <span class="text-white font-medium">$3,200</span>
-                  <button class="text-white hover:text-primary"><i class="ri-heart-line"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <img src="Photos/F3.jpg" alt="City Scene" class="w-full object-cover">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="absolute bottom-0 left-0 right-0 p-4">
-                <h3 class="text-white text-lg font-semibold mb-1">Urban Poetry</h3>
-                <p class="text-white/80 text-sm mb-2">by Michael Chen</p>
-                <div class="flex items-center justify-between">
-                  <span class="text-white font-medium">$2,800</span>
-                  <button class="text-white hover:text-primary"><i class="ri-heart-line"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <img src="Photos/F6.jpg" alt="Surreal Art" class="w-full object-cover">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="absolute bottom-0 left-0 right-0 p-4">
-                <h3 class="text-white text-lg font-semibold mb-1">Digital Dreams</h3>
-                <p class="text-white/80 text-sm mb-2">by Emily Anderson</p>
-                <div class="flex items-center justify-between">
-                  <span class="text-white font-medium">$2,100</span>
-                  <button class="text-white hover:text-primary"><i class="ri-heart-line"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="py-16 bg-gradient-to-b from-white to-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div class="bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl p-8 md:p-12">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h2 class="text-3xl font-bold text-gray-900 mb-4">Art Marketplace Stats</h2>
-              <p class="text-gray-600 mb-8">Join our thriving community of artists and art lovers</p>
-              <div class="grid grid-cols-2 gap-6">
-                <div>
-                  <div class="text-4xl font-bold text-primary mb-2">15K+</div>
-                  <p class="text-gray-600">Active Artists</p>
-                </div>
-                <div>
-                  <div class="text-4xl font-bold text-primary mb-2">50K+</div>
-                  <p class="text-gray-600">Artworks Sold</p>
-                </div>
-                <div>
-                  <div class="text-4xl font-bold text-primary mb-2">98%</div>
-                  <p class="text-gray-600">Satisfaction Rate</p>
-                </div>
-                <div>
-                  <div class="text-4xl font-bold text-primary mb-2">$2M+</div>
-                  <p class="text-gray-600">Artist Earnings</p>
-                </div>
-              </div>
-            </div>
-            <div class="relative">
-              <img src="Photos/A1.jpg" alt="Gallery Stats" class="rounded-xl shadow-xl">
-              <div class="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-lg p-4">
-                <div class="flex items-center space-x-2">
-                  <i class="ri-shield-star-fill text-2xl text-primary"></i>
-                  <div>
-                    <div class="font-semibold text-gray-900">Trusted Platform</div>
-                    <div class="text-sm text-gray-500">Verified Artists & Secure Payments</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <section class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex justify-between items-center mb-8">
-            <h2 class="text-3xl font-bold text-gray-900">Featured Artists</h2>
-            <button class="text-primary hover:text-primary/80">View All</button>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-white rounded-lg shadow-lg p-6">
-              <div class="flex items-center space-x-4 mb-4">
-                <img src="https://public.readdy.ai/ai/img_res/b66b87fa009c0bec0da17dcdccdb80fd.jpg" alt="Artist"
-                  class="w-16 h-16 rounded-full object-cover">
-                <div>
-                  <h3 class="font-semibold text-gray-900">Emily Anderson</h3>
-                  <p class="text-sm text-gray-500">Digital Artist</p>
-                </div>
-              </div>
-              <div class="flex items-center space-x-2 mb-4">
-                <div class="flex text-yellow-400">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-half-fill"></i>
-                </div>
-                <span class="text-sm text-gray-500">(4.5)</span>
-              </div>
-              <p class="text-sm text-gray-600 mb-4">Specializing in digital illustrations and concept art with a focus
-                on fantasy and sci-fi themes.</p>
-              <button class="w-full bg-primary/10 text-primary px-4 py-2 rounded-button hover:bg-primary/20">View
-                Portfolio</button>
-            </div>
-            <div class="bg-white rounded-lg shadow-lg p-6">
-              <div class="flex items-center space-x-4 mb-4">
-                <img src="https://public.readdy.ai/ai/img_res/1f8703fd715ddba8fc02217e111d7906.jpg" alt="Artist"
-                  class="w-16 h-16 rounded-full object-cover">
-                <div>
-                  <h3 class="font-semibold text-gray-900">Michael Chen</h3>
-                  <p class="text-sm text-gray-500">Traditional Painter</p>
-                </div>
-              </div>
-              <div class="flex items-center space-x-2 mb-4">
-                <div class="flex text-yellow-400">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                </div>
-                <span class="text-sm text-gray-500">(5.0)</span>
-              </div>
-              <p class="text-sm text-gray-600 mb-4">Master of oil painting with over 15 years of experience in portrait
-                and landscape art.</p>
-              <button class="w-full bg-primary/10 text-primary px-4 py-2 rounded-button hover:bg-primary/20">View
-                Portfolio</button>
-            </div>
-            <div class="bg-white rounded-lg shadow-lg p-6">
-              <div class="flex items-center space-x-4 mb-4">
-                <img src="https://public.readdy.ai/ai/img_res/a48a9b89804045878d074076b5cbaa1c.jpg" alt="Artist"
-                  class="w-16 h-16 rounded-full object-cover">
-                <div>
-                  <h3 class="font-semibold text-gray-900">Sarah Miller</h3>
-                  <p class="text-sm text-gray-500">Sketch Artist</p>
-                </div>
-              </div>
-              <div class="flex items-center space-x-2 mb-4">
-                <div class="flex text-yellow-400">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-line"></i>
-                </div>
-                <span class="text-sm text-gray-500">(4.0)</span>
-              </div>
-              <p class="text-sm text-gray-600 mb-4">Specializing in realistic pencil portraits and figure drawings with
-                attention to detail.</p>
-              <button class="w-full bg-primary/10 text-primary px-4 py-2 rounded-button hover:bg-primary/20">View
-                Portfolio</button>
-            </div>
-            <div class="bg-white rounded-lg shadow-lg p-6">
-              <div class="flex items-center space-x-4 mb-4">
-                <img src="https://public.readdy.ai/ai/img_res/ecc446eebd6b8fe103cf58a887561b73.jpg" alt="Artist"
-                  class="w-16 h-16 rounded-full object-cover">
-                <div>
-                  <h3 class="font-semibold text-gray-900">David Thompson</h3>
-                  <p class="text-sm text-gray-500">Abstract Artist</p>
-                </div>
-              </div>
-              <div class="flex items-center space-x-2 mb-4">
-                <div class="flex text-yellow-400">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-half-fill"></i>
-                </div>
-                <span class="text-sm text-gray-500">(4.5)</span>
-              </div>
-              <p class="text-sm text-gray-600 mb-4">Creating bold and vibrant abstract compositions using mixed media
-                and innovative techniques.</p>
-              <button class="w-full bg-primary/10 text-primary px-4 py-2 rounded-button hover:bg-primary/20">View
-                Portfolio</button>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-12">
-            <span class="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">Custom
-              Artwork</span>
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Commission Your Art</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">Transform your ideas into beautiful custom artwork. Our talented
-              artists will work closely with you to create something truly unique and meaningful.</p>
-          </div>
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div class="bg-gray-50 rounded-lg p-8">
-                <div class="mb-6">
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Upload Reference Image</label>
-                  <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                    <i class="ri-upload-cloud-line text-4xl text-gray-400 mb-2"></i>
-                    <p class="text-sm text-gray-500">Drag and drop your image here, or click to browse</p>
-                  </div>
-                </div>
-                <div class="mb-6">
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Select Size</label>
-                  <div class="grid grid-cols-3 gap-4">
-                    <button class="border-2 border-gray-200 rounded-button p-4 text-center hover:border-primary">
-                      <span class="block font-medium">Small</span>
-                      <span class="text-sm text-gray-500">8" x 10"</span>
-                    </button>
-                    <button class="border-2 border-gray-200 rounded-button p-4 text-center hover:border-primary">
-                      <span class="block font-medium">Medium</span>
-                      <span class="text-sm text-gray-500">12" x 16"</span>
-                    </button>
-                    <button class="border-2 border-gray-200 rounded-button p-4 text-center hover:border-primary">
-                      <span class="block font-medium">Large</span>
-                      <span class="text-sm text-gray-500">16" x 20"</span>
-                    </button>
-                  </div>
-                </div>
-                <div class="mb-6">
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Art Style</label>
-                  <div class="grid grid-cols-2 gap-4">
-                    <button class="border-2 border-gray-200 rounded-button p-4 text-center hover:border-primary">
-                      <span class="block font-medium">Realistic</span>
-                      <span class="text-sm text-gray-500">Detailed & Life-like</span>
-                    </button>
-                    <button class="border-2 border-gray-200 rounded-button p-4 text-center hover:border-primary">
-                      <span class="block font-medium">Stylized</span>
-                      <span class="text-sm text-gray-500">Artistic & Creative</span>
-                    </button>
-                  </div>
-                </div>
-                <button
-                  class="w-full bg-primary text-white px-8 py-3 rounded-button font-medium hover:bg-primary/90">Get
-                  Quote</button>
-              </div>
-            </div>
-            <div>
-              <img src="Photos/c1.jpg" alt="Commission Art" class="rounded-lg shadow-xl">
-              <div class="mt-8">
-                <h3 class="text-xl font-semibold text-gray-900 mb-4">Why Commission with Us?</h3>
-                <ul class="space-y-4">
-                  <li class="flex items-start">
-                    <i class="ri-check-line text-green-500 mt-1"></i>
-                    <span class="ml-2">Work with professional artists specialized in your preferred style</span>
-                  </li>
-                  <li class="flex items-start">
-                    <i class="ri-check-line text-green-500 mt-1"></i>
-                    <span class="ml-2">100% satisfaction guarantee with unlimited revisions</span>
-                  </li>
-                  <li class="flex items-start">
-                    <i class="ri-check-line text-green-500 mt-1"></i>
-                    <span class="ml-2">Secure payment and clear communication throughout the process</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="py-16 bg-gradient-to-b from-white to-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">Read what art lovers and collectors have to say about their
-              experience with our platform and artists.</p>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white rounded-xl shadow-lg p-6">
-              <div class="flex items-center mb-4">
-                <img src="https://public.readdy.ai/ai/img_res/037cdb8b18c6d6bb6541979f63c042db.jpg" alt="Client"
-                  class="w-12 h-12 rounded-full">
-                <div class="ml-4">
-                  <h4 class="font-semibold text-gray-900">Jennifer Wilson</h4>
-                  <p class="text-sm text-gray-500">Art Collector</p>
-                </div>
-              </div>
-              <div class="flex text-yellow-400 mb-4">
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-              </div>
-              <p class="text-gray-600">"The commissioned portrait exceeded my expectations. The artist captured every
-                detail perfectly and was a pleasure to work with throughout the process."</p>
-            </div>
-            <div class="bg-white rounded-xl shadow-lg p-6">
-              <div class="flex items-center mb-4">
-                <img src="https://public.readdy.ai/ai/img_res/e6c2ce5b9e3001deab7eab5c0b7dacb4.jpg" alt="Client"
-                  class="w-12 h-12 rounded-full">
-                <div class="ml-4">
-                  <h4 class="font-semibold text-gray-900">Robert Chen</h4>
-                  <p class="text-sm text-gray-500">Interior Designer</p>
-                </div>
-              </div>
-              <div class="flex text-yellow-400 mb-4">
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-half-fill"></i>
-              </div>
-              <p class="text-gray-600">"Found the perfect pieces for my client's space. The quality of artwork and
-                customer service is outstanding. Will definitely be coming back!"</p>
-            </div>
-            <div class="bg-white rounded-xl shadow-lg p-6">
-              <div class="flex items-center mb-4">
-                <img src="https://public.readdy.ai/ai/img_res/e1321bd5494358adaae9734192069d48.jpg" alt="Client"
-                  class="w-12 h-12 rounded-full">
-                <div class="ml-4">
-                  <h4 class="font-semibold text-gray-900">Sarah Martinez</h4>
-                  <p class="text-sm text-gray-500">Gallery Owner</p>
-                </div>
-              </div>
-              <div class="flex text-yellow-400 mb-4">
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-              </div>
-              <p class="text-gray-600">"As a gallery owner, I appreciate the platform's curation and professionalism.
-                It's been fantastic working with such talented artists."</p>
-            </div>
-          </div>
-        </div>
-      </section>
-  </main>
-  <footer class="bg-gray-900 text-white py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div>
-          <a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 block">logo</a>
-          <p class="text-gray-400">Discover and commission amazing artworks from talented artists worldwide.</p>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-          <ul class="space-y-2">
-            <li><a href="#" class="text-gray-400 hover:text-white">Gallery</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Artists</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Commission Art</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Support</h3>
-          <ul class="space-y-2">
-            <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
-          <p class="text-gray-400 mb-4">Subscribe to get updates on new artworks and special offers.</p>
-          <div class="flex">
-          <!--  <input type="email" placeholder="Your email"
-              class="flex-1 bg-gray-800 text-white px-4 py-2 rounded-l-button focus:outline-none">
-            <button class="bg-primary text-white px-4 py-2 rounded-r-button hover:bg-primary/90">Subscribe</button> -->
-          </div>
-        </div>
-      </div>
-      <div class="border-t border-gray-800 mt-12 pt-8 flex justify-between items-center">
-        <p class="text-gray-400">&copy; 2025 ArtGallery. All rights reserved.</p>
-        <div class="flex space-x-4">
-          <a href="#" class="text-gray-400 hover:text-white"><i class="ri-facebook-fill"></i></a>
-          <a href="#" class="text-gray-400 hover:text-white"><i class="ri-twitter-fill"></i></a>
-          <a href="#" class="text-gray-400 hover:text-white"><i class="ri-instagram-fill"></i></a>
-          <a href="#" class="text-gray-400 hover:text-white"><i class="ri-pinterest-fill"></i></a>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script>
-  AOS.init();
-</script>
-  <script src="script.js"></script>
-   <script> const mockArtStats = {
-      activeArtists: 15482,
-      artworksSold: 52749,
-      satisfactionRate: 98.3,
-      artistEarnings: 2157893,
-    };
-    function animateValue(obj, start, end, duration) {
-      let startTimestamp = null;
-      const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        obj.innerHTML = Math.floor(
-          progress * (end - start) + start,
-        ).toLocaleString();
-        if (progress < 1) {
-          window.requestAnimationFrame(step);
-        }
-      };
-      window.requestAnimationFrame(step);
-    }
-    document.addEventListener("DOMContentLoaded", function () {
-      const statsElements = document.querySelectorAll('[class*="text-4xl"]');
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const value = parseInt(
-                entry.target.textContent.replace(/[^0-9]/g, ""),
-              );
-              animateValue(entry.target, 0, value, 2000);
-              observer.unobserve(entry.target);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sketch - Custom Art</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#10B981'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
             }
-          });
-        },
-        { threshold: 0.5 },
-      );
-      statsElements.forEach((el) => observer.observe(el));
-      const heartButtons = document.querySelectorAll(".ri-heart-line");
-      heartButtons.forEach((button) => {
-        button.addEventListener("click", function (e) {
-          e.preventDefault();
-          this.classList.toggle("ri-heart-line");
-          this.classList.toggle("ri-heart-fill");
-          this.classList.toggle("text-primary");
-        });
-      });
-      const uploadArea = document.querySelector(".border-dashed");
-      const sizeButtons = document.querySelectorAll(
-        '[class*="border-2 border-gray-200"]',
-      );
-      uploadArea.addEventListener("click", function () {
-        const input = document.createElement("input");
-        input.type = "file";
-        input.accept = "image/*";
-        input.onchange = function (e) {
-          const file = e.target.files[0];
-          if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-              uploadArea.innerHTML = `
-<img src="${e.target.result}" class="max-h-32 mx-auto mb-2">
-<p class="text-sm text-gray-500">${file.name}</p>
-`;
-            };
-            reader.readAsDataURL(file);
-          }
-        };
-        input.click();
-      });
-      uploadArea.addEventListener("dragover", function (e) {
-        e.preventDefault();
-        this.classList.add("border-primary");
-      });
-      uploadArea.addEventListener("dragleave", function (e) {
-        e.preventDefault();
-        this.classList.remove("border-primary");
-      });
-      uploadArea.addEventListener("drop", function (e) {
-        e.preventDefault();
-        this.classList.remove("border-primary");
-        const file = e.dataTransfer.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = function (e) {
-            uploadArea.innerHTML = `
-<img src="${e.target.result}" class="max-h-32 mx-auto mb-2">
-<p class="text-sm text-gray-500">${file.name}</p>
-`;
-          };
-          reader.readAsDataURL(file);
         }
-      });
-      sizeButtons.forEach((button) => {
-        button.addEventListener("click", function () {
-          sizeButtons.forEach((btn) => btn.classList.remove("border-primary"));
-          this.classList.add("border-primary");
+    </script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        .drag-area.active { border: 2px dashed #4F46E5; }
+        .size-option input[type="radio"] { display: none; }
+        .size-option input[type="radio"]:checked + label { border-color: #4F46E5; background-color: #EEF2FF; }
+    </style>
+</head>
+<main class="pt-16">
+<body class="bg-white min-h-screen">
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-center h-16">
+            <div class="flex items-center">
+              <a href="#" class="text-2xl font-['Pacifico'] text-primary">logo</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+              <nav class="flex space-x-8">
+                <a href="#" class="text-gray-700 hover:text-primary">Gallery</a>
+                <a href="#" class="text-gray-700 hover:text-primary">Artists</a>
+                <a href="#" class="text-gray-700 hover:text-primary">Styles</a>
+                <a href="#" class="text-gray-700 hover:text-primary">Upload</a>
+              </nav>
+              <div class="relative">
+                <input type="text" placeholder="Search artworks, artists..."
+                  class="w-64 pl-10 pr-4 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/20">
+                <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+              </div>
+              <button class="flex items-center space-x-2 text-gray-700 hover:text-primary">
+                <i class="ri-user-line"></i>
+                <span><a href="Login\index.html target=" _self" target="_blank">Sign In </a></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-12">Create Your Custom Sketch</h1>
+        <div class="flex flex-wrap gap-8">
+            <div class="flex-1 min-w-[600px]">
+                <div id="uploadArea" class="drag-area border-2 border-dashed border-gray-300 rounded-lg p-8 text-center mb-8 cursor-pointer hover:border-primary transition-colors">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <i class="ri-upload-cloud-line text-4xl text-gray-400"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Drag & Drop your photo here</h3>
+                    <p class="text-gray-500 mb-4">or</p>
+                    <button class="bg-white border border-gray-300 text-gray-700 px-6 py-2 !rounded-button hover:bg-gray-50">
+                        Browse Files
+                    </button>
+                    <input type="file" id="fileInput" class="hidden" accept="image/*">
+                    <p class="text-sm text-gray-500 mt-4">Supported formats: JPG, PNG, WEBP (Max 10MB)</p>
+                </div>
+
+                <div id="previewArea" class="hidden mb-8">
+                    <img id="previewImage" class="w-full h-[400px] object-cover rounded-lg" src="" alt="Preview">
+                    <button id="removeImage" class="mt-4 text-red-600 flex items-center gap-2">
+                        <i class="ri-delete-bin-line"></i>
+                        Remove Image
+                    </button>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4">Select Size</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="size-option">
+                            <input type="radio" name="size" id="a3" value="A3" data-price="39.99">
+                            <label for="a3" class="block border-2 p-4 rounded-lg cursor-pointer hover:border-primary transition-all">
+                                <div class="text-lg font-medium">A3</div>
+                                <div class="text-gray-500">297 × 420 mm</div>
+                                <div class="text-primary font-semibold mt-2">$39.99</div>
+                            </label>
+                        </div>
+                        <div class="size-option">
+                            <input type="radio" name="size" id="a4" value="A4" data-price="29.99">
+                            <label for="a4" class="block border-2 p-4 rounded-lg cursor-pointer hover:border-primary transition-all">
+                                <div class="text-lg font-medium">A4</div>
+                                <div class="text-gray-500">210 × 297 mm</div>
+                                <div class="text-primary font-semibold mt-2">$29.99</div>
+                            </label>
+                        </div>
+                        <div class="size-option">
+                            <input type="radio" name="size" id="letter" value="Letter" data-price="34.99">
+                            <label for="letter" class="block border-2 p-4 rounded-lg cursor-pointer hover:border-primary transition-all">
+                                <div class="text-lg font-medium">Letter</div>
+                                <div class="text-gray-500">216 × 279 mm</div>
+                                <div class="text-primary font-semibold mt-2">$34.99</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-[400px] sticky top-8 h-fit">
+                <div class="border rounded-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4">Order Summary</h3>
+                    <div id="summaryContent" class="hidden">
+                        <div class="flex items-start gap-4 mb-4 pb-4 border-b">
+                            <img id="summaryImage" class="w-20 h-20 object-cover rounded" src="" alt="Selected image">
+                            <div>
+                                <div id="selectedSize" class="font-medium">-</div>
+                                <div id="selectedPrice" class="text-primary font-semibold mt-1">-</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between text-lg font-semibold mb-6">
+                            <span>Total:</span>
+                            <span id="totalPrice" class="text-primary">$0.00</span>
+                        </div>
+                    </div>
+                    <div id="noSelection" class="text-gray-500 text-center py-8">
+                        Please upload an image and select size to continue
+                    </div>
+                    <div class="space-y-3">
+                        <button id="addToCart" disabled class="w-full bg-white border-2 border-primary text-primary py-2 !rounded-button font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary hover:text-white transition-colors">
+                            Add to Cart
+                        </button>
+                        <button id="buyNow" disabled class="w-full bg-primary text-white py-2 !rounded-button font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 transition-colors">
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16">
+            <h2 class="text-2xl font-semibold mb-8">Recently Purchased Art</h2>
+            <div class="grid grid-cols-4 gap-6" id="purchasedArt"></div>
+        </div>
+    </div>
+
+    <div id="notification" class="fixed top-4 right-4 bg-white shadow-lg rounded-lg p-4 transform translate-x-full transition-transform duration-300"></div>
+    <script>
+        const mockPurchases = [
+            {
+                image: "https://public.readdy.ai/ai/img_res/d051f802ea8de6807e658a6a00da8f90.jpg",
+                size: "A4",
+                artist: "Emma Thompson",
+                date: "2025-02-21"
+            },
+            {
+                image: "https://public.readdy.ai/ai/img_res/197f1ac5643c82cfde95545a7f40f24e.jpg",
+                size: "A3",
+                artist: "Michael Chen",
+                date: "2025-02-20"
+            },
+            {
+                image: "https://public.readdy.ai/ai/img_res/b4defa707060dff68549eebaa0dfcd1c.jpg",
+                size: "Letter",
+                artist: "Sarah Williams",
+                date: "2025-02-19"
+            },
+            {
+                image: "https://public.readdy.ai/ai/img_res/8bfdd4480afb9c176602240993fa7352.jpg",
+                size: "A4",
+                artist: "David Miller",
+                date: "2025-02-18"
+            }
+        ];
+
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add(type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800');
+            notification.style.transform = 'translateX(0)';
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+            }, 3000);
+        }
+
+        function renderPurchases() {
+            const container = document.getElementById('purchasedArt');
+            mockPurchases.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'border rounded-lg overflow-hidden group';
+                card.innerHTML = `
+                    <div class="relative">
+                        <img src="${item.image}" alt="Art" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <button class="bg-white text-gray-800 px-4 py-2 !rounded-button">View Details</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="font-medium">${item.artist}</div>
+                        <div class="text-gray-500 text-sm">Size: ${item.size}</div>
+                        <div class="text-gray-500 text-sm">Purchased: ${item.date}</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const dragArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            const previewArea = document.getElementById('previewArea');
+            const previewImage = document.getElementById('previewImage');
+            const removeImage = document.getElementById('removeImage');
+            const summaryContent = document.getElementById('summaryContent');
+            const noSelection = document.getElementById('noSelection');
+            const summaryImage = document.getElementById('summaryImage');
+            const selectedSize = document.getElementById('selectedSize');
+            const selectedPrice = document.getElementById('selectedPrice');
+            const totalPrice = document.getElementById('totalPrice');
+            const addToCartBtn = document.getElementById('addToCart');
+            const buyNowBtn = document.getElementById('buyNow');
+
+            renderPurchases();
+
+            dragArea.addEventListener('click', () => fileInput.click());
+            dragArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dragArea.classList.add('active');
+            });
+
+            dragArea.addEventListener('dragleave', () => {
+                dragArea.classList.remove('active');
+            });
+
+            dragArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dragArea.classList.remove('active');
+                const file = e.dataTransfer.files[0];
+                handleFile(file);
+            });
+
+            fileInput.addEventListener('change', () => {
+                const file = fileInput.files[0];
+                handleFile(file);
+            });
+
+            function handleFile(file) {
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        previewImage.src = reader.result;
+                        summaryImage.src = reader.result;
+                        previewArea.classList.remove('hidden');
+                        dragArea.classList.add('hidden');
+                        updateSummary();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            removeImage.addEventListener('click', () => {
+                previewArea.classList.add('hidden');
+                dragArea.classList.remove('hidden');
+                fileInput.value = '';
+                updateSummary();
+            });
+            document.querySelectorAll('input[name="size"]').forEach(radio => {
+                radio.addEventListener('change', updateSummary);
+            });
+
+            function updateSummary() {
+                const hasImage = !previewArea.classList.contains('hidden');
+                const selectedSizeInput = document.querySelector('input[name="size"]:checked');
+
+                if (hasImage && selectedSizeInput) {
+                    summaryContent.classList.remove('hidden');
+                    noSelection.classList.add('hidden');
+                    selectedSize.textContent = `Size: ${selectedSizeInput.value}`;
+                    const price = selectedSizeInput.dataset.price;
+                    selectedPrice.textContent = `$${price}`;
+                    totalPrice.textContent = `$${price}`;
+                    addToCartBtn.disabled = false;
+                    buyNowBtn.disabled = false;
+                } else {
+                    summaryContent.classList.add('hidden');
+                    noSelection.classList.remove('hidden');
+                    addToCartBtn.disabled = true;
+                    buyNowBtn.disabled = true;
+                }
+            }
+
+            addToCartBtn.addEventListener('click', () => {
+                showNotification('Added to cart successfully');
+            });
+
+            buyNowBtn.addEventListener('click', () => {
+                showNotification('Redirecting to checkout...');
+            });
         });
-      });
-    });
-  </script>
-
+    </script>
 </body>
-
 </html>
