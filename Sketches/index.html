@@ -6,7 +6,7 @@
     <title>Sketch - Custom Art</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swzap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -40,21 +40,21 @@
         .size-option input[type="radio"]:checked + label { border-color: #4F46E5; background-color: #EEF2FF; }
     </style>
 </head>
-<main class="pt-16">
 <body class="bg-white min-h-screen">
+<main class="pt-16">
     <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex justify-between items-center h-16">
             <div class="flex items-center">
-              <a href="#" class="text-2xl font-['Pacifico'] text-primary">logo</a>
-            </div>
-            <div class="hidden md:flex items-center space-x-8">
-              <nav class="flex space-x-8">
+                <a href="#">
+                  <img src="Photos/Logo.jpg" alt="logo" class="h-16">
+                </a>
+            <nav class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 lg:space-x-8">
                 <a href="#" class="text-gray-700 hover:text-primary">Gallery</a>
                 <a href="#" class="text-gray-700 hover:text-primary">Artists</a>
                 <a href="#" class="text-gray-700 hover:text-primary">Styles</a>
                 <a href="#" class="text-gray-700 hover:text-primary">Upload</a>
-              </nav>
+            </nav>
               <div class="relative">
                 <input type="text" placeholder="Search artworks, artists..."
                   class="w-64 pl-10 pr-4 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/20">
@@ -62,7 +62,7 @@
               </div>
               <button class="flex items-center space-x-2 text-gray-700 hover:text-primary">
                 <i class="ri-user-line"></i>
-                <span><a href="Login\index.html target=" _self" target="_blank">Sign In </a></span>
+                <span><a href="Login/index.html" target="_blank">Sign In</a></span>
               </button>
             </div>
           </div>
@@ -71,27 +71,28 @@
     <div class="max-w-7xl mx-auto px-4 py-8">
         <h1 class="text-4xl font-bold text-center mb-12">Create Your Custom Sketch</h1>
         <div class="flex flex-wrap gap-8">
-            <div class="flex-1 min-w-[600px]">
-                <div id="uploadArea" class="drag-area border-2 border-dashed border-gray-300 rounded-lg p-8 text-center mb-8 cursor-pointer hover:border-primary transition-colors">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                        <i class="ri-upload-cloud-line text-4xl text-gray-400"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Drag & Drop your photo here</h3>
-                    <p class="text-gray-500 mb-4">or</p>
-                    <button class="bg-white border border-gray-300 text-gray-700 px-6 py-2 !rounded-button hover:bg-gray-50">
-                        Browse Files
-                    </button>
-                    <input type="file" id="fileInput" class="hidden" accept="image/*">
-                    <p class="text-sm text-gray-500 mt-4">Supported formats: JPG, PNG, WEBP (Max 10MB)</p>
+            <div class="flex-1 min-w-[300px] md:min-w-[600px]">
+            <div id="uploadArea" class="drag-area border-2 border-dashed border-gray-300 rounded-lg p-8 text-center mb-8 cursor-pointer hover:border-primary transition-colors">
+                <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                <i class="ri-upload-cloud-line text-4xl text-gray-400"></i>
                 </div>
+                <h3 class="text-lg font-semibold mb-2">Drag & Drop your photo here</h3>
+                <p class="text-gray-500 mb-4">or</p>
+                <button class="bg-white border border-gray-300 text-gray-700 px-6 py-2 !rounded-button hover:bg-gray-50">
+                Browse Files
+                </button>
+                <input type="file" id="fileInput" class="hidden" accept="image/*">
+                <p class="text-sm text-gray-500 mt-4">Supported formats: JPG, PNG, WEBP (Max 10MB)</p>
+            </div>
 
-                <div id="previewArea" class="hidden mb-8">
-                    <img id="previewImage" class="w-full h-[400px] object-cover rounded-lg" src="" alt="Preview">
-                    <button id="removeImage" class="mt-4 text-red-600 flex items-center gap-2">
-                        <i class="ri-delete-bin-line"></i>
-                        Remove Image
-                    </button>
-                </div>
+            <div id="previewArea" class="hidden mb-8">
+                <img id="previewImage" class="w-full h-[400px] object-cover rounded-lg" src="" alt="Preview Image">
+                <button id="removeImage" class="mt-4 text-red-600 flex items-center gap-2">
+                <i class="ri-delete-bin-line"></i>
+                Remove Image
+                </button>
+            </div>
+            </div>
 
                 <div class="mb-8">
                     <h3 class="text-xl font-semibold mb-4">Select Size</h3>
