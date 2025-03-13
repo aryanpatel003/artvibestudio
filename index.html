@@ -6,157 +6,241 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>ArtGallery - Discover & Commission Unique Artworks</title>
-
+  <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com">
   </script>
+    <style>
+      :where([class^="ri-"])::before {
+          content: "\f3c2";
+      }
+  
+      body {
+          font-family: 'Poppins', sans-serif;
+      }
+  
+      .masonry-grid {
+          column-count: 3;
+          column-gap: 1.5rem;
+      }
+  
+      .masonry-grid > div {
+          break-inside: avoid;
+          margin-bottom: 1.5rem;
+      }
+  
+      @media (max-width: 1024px) {
+          .masonry-grid {
+              column-count: 2;
+          }
+      }
+  
+      @media (max-width: 640px) {
+          .masonry-grid {
+              column-count: 1;
+          }
+      }
+  
+      /* Responsive Image Styles from First Document */
+      img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+          margin: 0 auto;
+      }
+  
+      /* Hamburger Menu Styles */
+      :root {
+          --primary-color: #ffffff;    /* White background */
+          --accent-color: #ff6200;     /* Orange from Art Vibe Studio */
+          --text-color: #1a1a1a;       /* Dark gray for text */
+          --transition-speed: 0.3s;
+      }
+  
+      .hamburger {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0.5rem;
+          display: none; /* Hidden by default, shown on mobile */
+          flex-direction: column;
+          gap: 5px;
+          z-index: 1001;
+      }
+  
+      .hamburger-line {
+          width: 25px;
+          height: 3px;
+          background-color: var(--text-color);
+          transition: all var(--transition-speed) ease;
+          transform-origin: center;
+          border-radius: 2px;
+      }
+  
+      .nav-menu {
+          list-style: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          background-color: var(--primary-color);
+          transform: translateY(-100%);
+          transition: transform var(--transition-speed) ease;
+          padding: 4rem 1rem 1rem;
+          text-align: center;
+          margin: 0;
+          z-index: 1000;
+          box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      }
+  
+      .nav-item {
+          padding: 0.75rem 1rem;
+          opacity: 0;
+          transform: translateY(-20px);
+          transition: all var(--transition-speed) ease;
+      }
+  
+      .nav-menu.is-active .nav-item {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  
+      .nav-menu.is-active .nav-item:nth-child(1) { transition-delay: 0.1s; }
+      .nav-menu.is-active .nav-item:nth-child(2) { transition-delay: 0.2s; }
+      .nav-menu.is-active .nav-item:nth-child(3) { transition-delay: 0.3s; }
+      .nav-menu.is-active .nav-item:nth-child(4) { transition-delay: 0.4s; }
+  
+      .nav-link {
+          color: var(--text-color);
+          text-decoration: none;
+          font-size: 1.2rem;
+          display: block;
+          padding: 0.5rem;
+          transition: color var(--transition-speed) ease;
+          font-family: 'Poppins', sans-serif;
+          font-weight: 500;
+      }
+  
+      .nav-link:hover,
+      .nav-link:focus {
+          color: var(--accent-color);
+          outline: none;
+      }
+  
+      /* Active states */
+      .nav-menu.is-active {
+          transform: translateY(0);
+      }
+  
+      .hamburger.is-active .hamburger-line:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
+          background-color: var(--accent-color);
+      }
+  
+      .hamburger.is-active .hamburger-line:nth-child(2) {
+          opacity: 0;
+      }
+  
+      .hamburger.is-active .hamburger-line:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
+          background-color: var(--accent-color);
+      }
+  
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+          .hamburger {
+              display: flex; /* Show hamburger on mobile */
+          }
+  
+          .nav-menu {
+              display: none; /* Hidden by default */
+          }
+  
+          .nav-menu.is-active {
+              display: block; /* Show when active */
+          }
+  
+          main {
+              padding-top: 64px; /* Prevent content overlap */
+          }
+      }
+  
+      /* Desktop Navigation Styles (unchanged) */
+      #nav-links a {
+          font-family: 'Poppins', sans-serif;
+          font-weight: 500;
+      }
+  </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: "#6366f1",
-            secondary: "#f59e0b",
-          },
-          borderRadius: {
-            none: "0px",
-            sm: "4px",
-            DEFAULT: "8px",
-            md: "12px",
-            lg: "16px",
-            xl: "20px",
-            "2xl": "24px",
-            "3xl": "32px",
-            full: "9999px",
-            button: "8px",
-          },
-        },
-      },
-    };
-  </script>
-  <style>
-    :where([class^="ri-"])::before {
-      content: "\f3c2";
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .masonry-grid {
-      column-count: 3;
-      column-gap: 1.5rem;
-    }
-
-    .masonry-grid>div {
-      break-inside: avoid;
-      margin-bottom: 1.5rem;
-    }
-
-    @media (max-width: 1024px) {
-      .masonry-grid {
-        column-count: 2;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .masonry-grid {
-        column-count: 1;
-      }
-    }
-
-      /* Hamburger Menu */
-      .hamburger {
-            display: none;
-            cursor: pointer;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .hamburger div {
-            width: 30px;
-            height: 4px;
-            background: white;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .menu {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                background-color: #333;
-                text-align: center;
-                padding: 15px 0;
-            }
-
-            .menu.active {
-                display: flex;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-        }
-  </style>
+          
+             
 </head>
 
 <body class="min-h-screen bg-gray-50">
   <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        <div class="flex items-center">
-          <a href="#" class="flex items-center">
-            <img src="Photos/Logo.jpg" alt="logo" class="h-16">
-          </a>
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="#" class="flex items-center">
+                    <img src="Photos/Logo.jpg" alt="logo" class="h-16">
+                </a>
+            </div>
+
+            <!-- Desktop Navigation (unchanged) -->
+            <nav class="hidden md:flex space-x-8" id="nav-links" aria-label="Main navigation">
+                <a href="#" class="text-gray-900 hover:text-primary font-semibold">Home</a>
+                <a href="#" class="text-gray-900 hover:text-primary font-semibold">Gallery</a>
+                <a href="#" class="text-gray-900 hover:text-primary font-semibold">Artists</a>
+                <a href="#" class="text-gray-900 hover:text-primary font-semibold">About Us</a>
+            </nav>
+
+            <!-- Hamburger Button (Mobile Only) -->
+            <button class="hamburger md:hidden" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Mobile Menu -->
+            <ul class="nav-menu hidden md:hidden" role="menu">
+              <li class="nav-item" role="menuitem">
+                <a href="#" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item" role="menuitem">
+                <a href="#" class="nav-link">Gallery</a>
+              </li>
+              <li class="nav-item" role="menuitem">
+                <a href="#" class="nav-link">Artists</a>
+              </li>
+              <li class="nav-item" role="menuitem">
+                <a href="#" class="nav-link">About Us</a>
+              </li>
+              <li class="nav-item" role="menuitem">
+                <a href="Login/index.html" class="nav-link">Sign In</a>
+              </li>
+              <li class="nav-item" role="menuitem">
+                <a href="Signup/index.html" class="nav-link">Sign Up</a>
+              </li>
+            </ul>
+
+            <!-- Search & Sign In (Desktop Only) -->
+            <div class="hidden md:flex items-center space-x-8">
+                <div class="relative">
+                    <input type="text" placeholder="Search artworks, artists, styles..."
+                        class="w-64 pl-10 pr-4 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/20">
+                    <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                </div>
+                <button class="flex items-center space-x-2 text-gray-900 hover:text-primary font-semibold">
+                    <i class="ri-user-line"></i>
+                    <span><a href="Login/index.html" class="text-gray-900 hover:text-primary font-semibold">Sign In</a></span>
+                </button>
+            </div>
         </div>
-
-        <!-- Hamburger Button -->
-        <button id="hamburger" class="md:hidden flex flex-col space-y-1" aria-label="Toggle navigation">
-          <span class="block w-8 h-1 bg-gray-700"></span>
-          <span class="block w-8 h-1 bg-gray-700"></span>
-          <span class="block w-8 h-1 bg-gray-700"></span>
-        </button>
-
-        <!-- Navigation -->
-        <nav class="hidden md:flex space-x-8" id="nav-links" aria-label="Main navigation">
-          <a href="#" class="text-gray-900 hover:text-primary font-semibold">Home</a>
-          <a href="#" class="text-gray-900 hover:text-primary font-semibold">Gallery</a>
-          <a href="#" class="text-gray-900 hover:text-primary font-semibold">Artists</a>
-          <a href="#" class="text-gray-900 hover:text-primary font-semibold">About Us</a>
-        </nav>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-white shadow-md p-4">
-          <ul class="flex flex-col space-y-2">
-            <li><a href="#" class="text-gray-900 hover:text-primary font-semibold">Home</a></li>
-            <li><a href="#" class="text-gray-900 hover:text-primary font-semibold">Gallery</a></li>
-            <li><a href="#" class="text-gray-900 hover:text-primary font-semibold">Artists</a></li>
-            <li><a href="#" class="text-gray-900 hover:text-primary font-semibold">About Us</a></li>
-          </ul>
-        </div>
-
-        <!-- Search & Sign In -->
-        <div class="hidden md:flex items-center space-x-8">
-          <div class="relative">
-            <input type="text" placeholder="Search artworks, artists, styles..."
-              class="w-64 pl-10 pr-4 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/20">
-            <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-          </div>
-          <button class="flex items-center space-x-2 text-gray-900 hover:text-primary font-semibold">
-            <i class="ri-user-line"></i>
-            <span><a href="Login/index.html" class="text-gray-900 hover:text-primary font-semibold">Sign In</a></span>
-          </button>
-        </div>
-
-      </div>
     </div>
 </header>
   <main class="pt-16">
@@ -674,5 +758,6 @@
     });
   });
 </script>
+<script src="script.js"></script>
 </body>
 </html>
