@@ -1,44 +1,448 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Slider</title>
-    <link rel="stylesheet" href="srtyles.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ArtGallery - Discover & Share Art</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#7C3AED',
+secondary: '#F59E0B'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.active-nav {
+color: #7C3AED;
+}
+html {
+scroll-behavior: smooth;
+}
+.masonry-grid {
+column-count: 1;
+column-gap: 1.5rem;
+}
+@media (min-width: 768px) {
+.masonry-grid {
+column-count: 2;
+}
+}
+@media (min-width: 1024px) {
+.masonry-grid {
+column-count: 3;
+}
+}
+.masonry-item {
+break-inside: avoid;
+margin-bottom: 1.5rem;
+}
+.art-card {
+transition: transform 0.3s ease;
+}
+.art-card:hover {
+transform: translateY(-5px);
+}
+.like-button.active {
+animation: pulse 0.3s ease;
+}
+@keyframes pulse {
+0% { transform: scale(1); }
+50% { transform: scale(1.2); }
+100% { transform: scale(1); }
+}
+.modal {
+transition: opacity 0.3s ease;
+}
+.slide-up {
+animation: slideUp 0.5s ease forwards;
+}
+@keyframes slideUp {
+from { transform: translateY(100%); opacity: 0; }
+to { transform: translateY(0); opacity: 1; }
+}
+.category-card {
+transition: all 0.3s ease;
+}
+.category-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+</style>
 </head>
-<body>
-    <div class="container">
-        <div class="background" id="background"></div>
-        <div class="slide">
-            <div class="item" onclick="changeBackground('anim/Image1.jpg')">
-                <div class="content">
-                    <div class="name">Australia</div>
-                    <div class="des">Beautiful autumn scenery.</div>
-                    <button>See More</button>
-                </div>
-            </div>
-            <div class="item" onclick="changeBackground('anim/image2.jpg')">
-                <div class="content">
-                    <div class="name">Switzerland</div>
-                    <div class="des">Snowy mountains and lakes.</div>
-                    <button>See More</button>
-                </div>
-            </div>
-            <div class="item" onclick="changeBackground('anim/image3.jpg')">
-                <div class="content">
-                    <div class="name">Finland</div>
-                    <div class="des">Serene forests and landscapes.</div>
-                    <button>See More</button>
-                </div>
-            </div>
-        </div>
-        <div class="button">
-            <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
-            <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+<body class="bg-white">
+<header class="fixed w-full top-0 z-50 bg-white shadow-sm">
+<nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+<a href="#" class="text-3xl font-['Pacifico'] text-primary">logo</a>
+<button class="lg:hidden text-gray-600" id="mobileMenuButton">
+<i class="ri-menu-line text-2xl"></i>
+</button>
+<div class="hidden lg:flex items-center space-x-8" id="navMenu">
+<a href="#" class="text-gray-700 hover:text-primary transition-colors active-nav" onclick="scrollToTop(event)" id="homeLink">Home</a>
+<a href="#" class="text-gray-700 hover:text-primary transition-colors">Gallery</a>
+<a href="#" class="text-gray-700 hover:text-primary transition-colors">Upload Art</a>
+<a href="#" class="text-gray-700 hover:text-primary transition-colors">Categories</a>
+<div class="relative">
+<input type="text" placeholder="Search artworks..." class="w-64 px-4 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary">
+<button class="absolute right-3 top-1/2 transform -translate-y-1/2">
+<i class="ri-search-line text-gray-400"></i>
+</button>
+</div>
+<button class="flex items-center space-x-2 text-gray-700 hover:text-primary transition-colors" id="cartButton">
+<i class="ri-shopping-cart-line"></i>
+<span class="text-sm">Cart (3)</span>
+</button>
+<div class="relative" id="userDropdown">
+<button class="flex items-center space-x-2">
+<img src="https://public.readdy.ai/ai/img_res/8ecac8b4fd2ee9e5620b4d362644bfd6.jpg" class="w-8 h-8 rounded-full object-cover">
+<i class="ri-arrow-down-s-line"></i>
+</button>
+</div>
+</div>
+</nav>
+</header>
+<main class="mt-20">
+<section class="relative min-h-[600px] bg-gradient-to-r from-purple-50 to-purple-100 overflow-hidden py-12">
+<div class="container mx-auto px-4 h-full flex flex-col lg:flex-row items-center">
+<div class="w-full lg:w-1/2 lg:pr-12 slide-up mb-8 lg:mb-0">
+<h1 class="text-5xl font-bold text-gray-900 mb-6">Discover Unique Artworks from Global Artists</h1>
+<p class="text-xl text-gray-600 mb-8">Join our creative community to buy, sell and share exceptional pieces of art that tell stories and inspire emotions.</p>
+<div class="flex space-x-4">
+<button class="bg-primary text-white px-8 py-3 rounded-button hover:bg-opacity-90 transition-colors">
+Explore Gallery
+</button>
+<button class="border-2 border-primary text-primary px-8 py-3 rounded-button hover:bg-primary hover:text-white transition-colors">
+Upload Your Art
+</button>
+</div>
+</div>
+<div class="w-full lg:w-1/2">
+<img src="https://public.readdy.ai/ai/img_res/a7190ae94d4032f5b3c8361d6e1e1e39.jpg" class="w-full h-auto rounded-lg shadow-xl">
+</div>
+</div>
+</section>
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-12">Explore Art Categories</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="category-card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer">
+<img src="https://public.readdy.ai/ai/img_res/e09b54a26a0c16f3275c30c400f6ce35.jpg" class="w-full h-48 object-cover">
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Paintings</h3>
+<p class="text-gray-600">Discover original paintings from emerging and established artists.</p>
+</div>
+</div>
+<div class="category-card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer">
+<img src="https://public.readdy.ai/ai/img_res/a7b74fc4e2d1f83848248208983d4e32.jpg" class="w-full h-48 object-cover">
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Digital Art</h3>
+<p class="text-gray-600">Explore innovative digital creations and NFT artwork.</p>
+</div>
+</div>
+<div class="category-card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer">
+<img src="https://public.readdy.ai/ai/img_res/25139d16cb3bd62d1565ea231a5520bb.jpg" class="w-full h-48 object-cover">
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Photography</h3>
+<p class="text-gray-600">Find stunning photographs from talented photographers worldwide.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="flex justify-between items-center mb-12">
+<h2 class="text-3xl font-bold">Featured Artworks</h2>
+<div class="flex space-x-4">
+<button class="px-6 py-2 rounded-full bg-white text-gray-700 hover:bg-primary hover:text-white transition-colors">All</button>
+<button class="px-6 py-2 rounded-full bg-white text-gray-700 hover:bg-primary hover:text-white transition-colors">Trending</button>
+<button class="px-6 py-2 rounded-full bg-white text-gray-700 hover:bg-primary hover:text-white transition-colors">New</button>
+</div>
+</div>
+<div class="masonry-grid">
+<div class="masonry-item art-card">
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/0d452f94d4adaffcb592265a8547c8ec.jpg" class="w-full h-auto">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-xl font-semibold mb-2">Abstract Harmony</h3>
+<p class="text-gray-600">By Sarah Anderson</p>
+</div>
+<button class="like-button text-gray-400 hover:text-red-500 transition-colors">
+<i class="ri-heart-line text-2xl"></i>
+</button>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-primary font-semibold">$2,499</span>
+<button class="bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition-colors">
+Add to Cart
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="masonry-item art-card">
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/8815e1db4a2134763c3eaa96446de178.jpg" class="w-full h-auto">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-xl font-semibold mb-2">Digital Dreams</h3>
+<p class="text-gray-600">By Michael Chen</p>
+</div>
+<button class="like-button text-gray-400 hover:text-red-500 transition-colors">
+<i class="ri-heart-line text-2xl"></i>
+</button>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-primary font-semibold">$1,899</span>
+<button class="bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition-colors">
+Add to Cart
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="masonry-item art-card">
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/b89baaa363b8d45a85e10e5e1f65ea17.jpg" class="w-full h-auto">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-xl font-semibold mb-2">Monochrome Elegance</h3>
+<p class="text-gray-600">By Emma Roberts</p>
+</div>
+<button class="like-button text-gray-400 hover:text-red-500 transition-colors">
+<i class="ri-heart-line text-2xl"></i>
+</button>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-primary font-semibold">$3,299</span>
+<button class="bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition-colors">
+Add to Cart
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="bg-gradient-to-r from-primary to-purple-600 rounded-xl p-12 text-white">
+<div class="max-w-2xl mx-auto text-center">
+<h2 class="text-3xl font-bold mb-6">Start Selling Your Art Today</h2>
+<p class="text-lg mb-8">Join thousands of artists who have found their audience and are making a living doing what they love.</p>
+<button class="bg-white text-primary px-8 py-3 rounded-button hover:bg-opacity-90 transition-colors">
+Start Uploading
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-gray-900 text-white py-12">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+<div>
+<h3 class="text-xl font-bold mb-4">About Us</h3>
+<p class="text-gray-400">Connecting artists and art lovers worldwide through our innovative platform.</p>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-4">Quick Links</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Gallery</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Upload Art</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Categories</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Artist Dashboard</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-4">Support</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-4">Newsletter</h3>
+<p class="text-gray-400 mb-4">Subscribe to get updates on new artworks and featured artists.</p>
+<div class="flex">
+<input type="email" placeholder="Enter your email" class="flex-1 px-4 py-2 rounded-l-button bg-gray-800 border-none focus:outline-none focus:ring-2 focus:ring-primary">
+<button class="bg-primary px-6 py-2 rounded-r-button hover:bg-opacity-90 transition-colors">
+Subscribe
+</button>
+</div>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8 flex justify-between items-center">
+<p class="text-gray-400">&copy; 2025 ArtGallery. All rights reserved.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-facebook-fill text-xl"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-twitter-fill text-xl"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-instagram-fill text-xl"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-pinterest-fill text-xl"></i>
+</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const homeLink = document.getElementById('homeLink');
+if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+homeLink.classList.add('active-nav');
+}
+function scrollToTop(event) {
+if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+event.preventDefault();
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+}
+}
+window.scrollToTop = scrollToTop;
+const likeButtons = document.querySelectorAll('.like-button');
+likeButtons.forEach(button => {
+button.addEventListener('click', function() {
+const icon = this.querySelector('i');
+if (icon.classList.contains('ri-heart-line')) {
+icon.classList.remove('ri-heart-line');
+icon.classList.add('ri-heart-fill');
+icon.style.color = '#EF4444';
+} else {
+icon.classList.remove('ri-heart-fill');
+icon.classList.add('ri-heart-line');
+icon.style.color = '';
+}
+this.classList.add('active');
+setTimeout(() => this.classList.remove('active'), 300);
+});
+});
+const userDropdown = document.getElementById('userDropdown');
+const dropdownContent = document.createElement('div');
+dropdownContent.className = 'absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 hidden';
+dropdownContent.innerHTML = `
+<a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
+<a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">My Artworks</a>
+<a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+<hr class="my-2">
+<a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</a>
+`;
+userDropdown.appendChild(dropdownContent);
+userDropdown.addEventListener('click', function() {
+dropdownContent.classList.toggle('hidden');
+});
+document.addEventListener('click', function(event) {
+if (!userDropdown.contains(event.target)) {
+dropdownContent.classList.add('hidden');
+}
+});
+const cartButton = document.getElementById('cartButton');
+cartButton.addEventListener('click', function() {
+const modal = document.createElement('div');
+modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+modal.innerHTML = `
+<div class="bg-white rounded-lg w-96 p-6 transform transition-all">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-xl font-bold">Shopping Cart</h3>
+<button class="text-gray-400 hover:text-gray-600">
+<i class="ri-close-line text-2xl"></i>
+</button>
+</div>
+<div class="space-y-4">
+<div class="flex items-center space-x-4">
+<img src="https://public.readdy.ai/ai/img_res/b5370e58e0b2493a316873962504cf5f.jpg" class="w-20 h-20 rounded object-cover">
+<div class="flex-1">
+<h4 class="font-semibold">Abstract Harmony</h4>
+<p class="text-gray-600">$2,499</p>
+</div>
+<button class="text-gray-400 hover:text-red-500">
+<i class="ri-delete-bin-line"></i>
+</button>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t">
+<div class="flex justify-between mb-4">
+<span class="font-semibold">Total:</span>
+<span class="font-bold">$2,499</span>
+</div>
+<button class="w-full bg-primary text-white py-2 rounded-button hover:bg-opacity-90 transition-colors">
+Checkout
+</button>
+</div>
+</div>
+`;
+document.body.appendChild(modal);
+modal.querySelector('button').addEventListener('click', function() {
+modal.remove();
+});
+modal.addEventListener('click', function(event) {
+if (event.target === modal) {
+modal.remove();
+}
+});
+});
+});
+const mobileMenuButton = document.getElementById('mobileMenuButton');
+const navMenu = document.getElementById('navMenu');
+mobileMenuButton.addEventListener('click', () => {
+if (navMenu.classList.contains('hidden')) {
+navMenu.classList.remove('hidden');
+navMenu.classList.add('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'right-0', 'bg-white', 'shadow-lg', 'p-4', 'space-y-4');
+} else {
+navMenu.classList.add('hidden');
+navMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'right-0', 'bg-white', 'shadow-lg', 'p-4', 'space-y-4');
+}
+});
+// Close mobile menu when clicking outside
+document.addEventListener('click', (event) => {
+if (!navMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+navMenu.classList.add('hidden');
+navMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'right-0', 'bg-white', 'shadow-lg', 'p-4', 'space-y-4');
+}
+});
+// Close mobile menu when window is resized to desktop view
+window.addEventListener('resize', () => {
+if (window.innerWidth >= 1024) {
+navMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'right-0', 'bg-white', 'shadow-lg', 'p-4', 'space-y-4');
+navMenu.classList.add('lg:flex');
+}
+});
+</script>
 </body>
 </html>
