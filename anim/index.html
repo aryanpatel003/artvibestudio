@@ -149,23 +149,28 @@ box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 
 </head>
 <body class="bg-white">
 <header class="fixed w-full top-0 z-50 bg-white shadow-sm">
-<nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+<nav class="container mx-auto px-4 py-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-12">
 <a href="#" class="text-3xl font-['Pacifico'] text-primary">logo</a>
-<button class="md:hidden text-gray-600" id="mobileMenuButton">
-<i class="ri-menu-line text-2xl"></i>
-</button>
-<div class="hidden md:flex items-center space-x-8 nav-menu-mobile" id="navMenu">
+<div class="hidden md:flex items-center space-x-8">
 <a href="#" class="text-gray-700 hover:text-primary transition-colors active-nav" onclick="scrollToTop(event)" id="homeLink">Home</a>
 <a href="#" class="text-gray-700 hover:text-primary transition-colors">Gallery</a>
 <a href="#" class="text-gray-700 hover:text-primary transition-colors">Upload Art</a>
 <a href="#" class="text-gray-700 hover:text-primary transition-colors">Categories</a>
+</div>
+</div>
+<button class="md:hidden text-gray-600" id="mobileMenuButton">
+<i class="ri-menu-line text-2xl"></i>
+</button>
+<div class="hidden md:flex items-center space-x-8" id="navMenu">
 <div class="relative">
-<input type="text" placeholder="Search artworks..." class="w-64 px-4 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary">
+<input type="text" placeholder="Search artworks..." class="w-64 px-4 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary text-sm">
 <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
 <i class="ri-search-line text-gray-400"></i>
 </button>
 </div>
-<button class="flex items-center space-x-2 text-gray-700 hover:text-primary transition-colors" id="cartButton">
+<button class="flex items-center space-x-2 text-gray-700 hover:text-primary transition-colors whitespace-nowrap" id="cartButton">
 <i class="ri-shopping-cart-line"></i>
 <span class="text-sm">Cart (3)</span>
 </button>
@@ -174,6 +179,7 @@ box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 
 <img src="https://public.readdy.ai/ai/img_res/8ecac8b4fd2ee9e5620b4d362644bfd6.jpg" class="w-8 h-8 rounded-full object-cover">
 <i class="ri-arrow-down-s-line"></i>
 </button>
+</div>
 </div>
 </div>
 </nav>
