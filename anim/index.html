@@ -3,21 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="anim/srtyles.css">
-    <title>Animated Gallery</title>
+    <title>Travel Slider</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="gallery-container">
-        <h1>Gallery</h1>
-        <div class="gallery">
-            <img src="anim/Image1.jpg" alt="Image1">
-            <img src="anim/image2.jpg" alt="image2">
-            <img src="anim/image3.jpg" alt="image3">
-            <img src="anim/image4.jpg" alt="image4">
+    <div class="container">
+        <div class="background" id="background"></div>
+        <div class="slide">
+            <div class="item" onclick="changeBackground('images/australia.jpg')">
+                <div class="content">
+                    <div class="name">Australia</div>
+                    <div class="des">Beautiful autumn scenery.</div>
+                    <button>See More</button>
+                </div>
+            </div>
+            <div class="item" onclick="changeBackground('images/switzerland.jpg')">
+                <div class="content">
+                    <div class="name">Switzerland</div>
+                    <div class="des">Snowy mountains and lakes.</div>
+                    <button>See More</button>
+                </div>
+            </div>
+            <div class="item" onclick="changeBackground('images/finland.jpg')">
+                <div class="content">
+                    <div class="name">Finland</div>
+                    <div class="des">Serene forests and landscapes.</div>
+                    <button>See More</button>
+                </div>
+            </div>
         </div>
-        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
-        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+        <div class="button">
+            <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
+            <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
     </div>
-    <script src="anim/script.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
