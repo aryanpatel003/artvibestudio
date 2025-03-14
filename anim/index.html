@@ -174,12 +174,8 @@ box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 
 <i class="ri-shopping-cart-line"></i>
 <span class="text-sm">Cart (3)</span>
 </button>
-<div class="relative" id="userDropdown">
-<button class="flex items-center space-x-2">
-<img src="https://public.readdy.ai/ai/img_res/8ecac8b4fd2ee9e5620b4d362644bfd6.jpg" class="w-8 h-8 rounded-full object-cover">
-<i class="ri-arrow-down-s-line"></i>
-</button>
-</div>
+<button onclick="showLoginModal()" class="text-gray-700 hover:text-primary transition-colors whitespace-nowrap">Sign In</button>
+<button onclick="showRegisterModal()" class="bg-primary text-white px-6 py-2 rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap">Sign Up</button>
 </div>
 </div>
 </nav>
@@ -265,13 +261,177 @@ Upload Your Art
 <div class="container mx-auto px-4">
 <h2 class="text-3xl font-bold text-center mb-12">Explore Art Categories</h2>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-<a href="/paintings.html" target="_blank" class="block category-card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer">
+<a href="#" onclick="showPaintingModal()" class="block category-card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer">
 <img src="https://public.readdy.ai/ai/img_res/e09b54a26a0c16f3275c30c400f6ce35.jpg" class="w-full h-48 object-cover">
 <div class="p-6">
 <h3 class="text-xl font-semibold mb-2">Paintings</h3>
 <p class="text-gray-600">Discover original paintings from emerging and established artists.</p>
 </div>
 </a>
+<div id="paintingModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+<div class="bg-white rounded-lg w-[800px] p-8 max-h-[90vh] overflow-y-auto">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold">Custom Painting Order</h2>
+<button onclick="closePaintingModal()" class="text-gray-500 hover:text-gray-700">
+<i class="ri-close-line text-2xl"></i>
+</button>
+</div>
+<form id="paintingForm" class="space-y-6">
+<div>
+<label class="block text-gray-700 font-medium mb-2">Upload Reference Image</label>
+<div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center" id="dropZone">
+<input type="file" id="imageInput" class="hidden" accept="image/*">
+<div class="space-y-2" id="uploadPlaceholder">
+<i class="ri-upload-cloud-line text-4xl text-gray-400"></i>
+<p class="text-gray-500">Drag and drop your image here or</p>
+<button type="button" onclick="document.getElementById('imageInput').click()" class="text-primary hover:text-primary-dark">Browse Files</button>
+</div>
+<img id="previewImage" class="hidden max-h-48 mx-auto">
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div>
+<label class="block text-gray-700 font-medium mb-2">Select Size</label>
+<div class="space-y-2">
+<label class="flex items-center space-x-3">
+<input type="radio" name="size" value="small" class="text-primary">
+<span>Small (12" x 16")</span>
+<span class="text-gray-500">$299</span>
+</label>
+<label class="flex items-center space-x-3">
+<input type="radio" name="size" value="medium" class="text-primary">
+<span>Medium (24" x 36")</span>
+<span class="text-gray-500">$499</span>
+</label>
+<label class="flex items-center space-x-3">
+<input type="radio" name="size" value="large" class="text-primary">
+<span>Large (36" x 48")</span>
+<span class="text-gray-500">$799</span>
+</label>
+</div>
+</div>
+<div>
+<label class="block text-gray-700 font-medium mb-2">Frame Options</label>
+<div class="space-y-2">
+<label class="flex items-center space-x-3">
+<input type="radio" name="frame" value="none" class="text-primary">
+<span>No Frame</span>
+<span class="text-gray-500">$0</span>
+</label>
+<label class="flex items-center space-x-3">
+<input type="radio" name="frame" value="simple" class="text-primary">
+<span>Simple Black Frame</span>
+<span class="text-gray-500">+$99</span>
+</label>
+<label class="flex items-center space-x-3">
+<input type="radio" name="frame" value="premium" class="text-primary">
+<span>Premium Wood Frame</span>
+<span class="text-gray-500">+$199</span>
+</label>
+</div>
+</div>
+</div>
+<div>
+<label class="block text-gray-700 font-medium mb-2">Special Instructions</label>
+<textarea class="w-full border border-gray-300 rounded-lg p-3 h-24 resize-none" placeholder="Add any special requirements or notes..."></textarea>
+</div>
+<div class="border-t pt-6">
+<div class="flex justify-between items-center mb-4">
+<span class="text-lg font-medium">Total Price:</span>
+<span class="text-2xl font-bold text-primary" id="totalPrice">$299</span>
+</div>
+<button type="submit" class="w-full bg-primary text-white py-3 rounded-button hover:bg-opacity-90 transition-colors">
+Place Order
+</button>
+</div>
+</form>
+</div>
+</div>
+<script>
+function showPaintingModal() {
+document.getElementById('paintingModal').classList.remove('hidden');
+document.body.style.overflow = 'hidden';
+}
+function closePaintingModal() {
+document.getElementById('paintingModal').classList.add('hidden');
+document.body.style.overflow = '';
+}
+// Handle file upload and preview
+const imageInput = document.getElementById('imageInput');
+const previewImage = document.getElementById('previewImage');
+const uploadPlaceholder = document.getElementById('uploadPlaceholder');
+const dropZone = document.getElementById('dropZone');
+imageInput.addEventListener('change', handleFileSelect);
+function handleFileSelect(e) {
+const file = e.target.files[0];
+if (file && file.type.startsWith('image/')) {
+const reader = new FileReader();
+reader.onload = function(e) {
+previewImage.src = e.target.result;
+previewImage.classList.remove('hidden');
+uploadPlaceholder.classList.add('hidden');
+};
+reader.readAsDataURL(file);
+}
+}
+// Drag and drop functionality
+dropZone.addEventListener('dragover', (e) => {
+e.preventDefault();
+dropZone.classList.add('border-primary');
+});
+dropZone.addEventListener('dragleave', (e) => {
+e.preventDefault();
+dropZone.classList.remove('border-primary');
+});
+dropZone.addEventListener('drop', (e) => {
+e.preventDefault();
+dropZone.classList.remove('border-primary');
+const file = e.dataTransfer.files[0];
+if (file && file.type.startsWith('image/')) {
+imageInput.files = e.dataTransfer.files;
+handleFileSelect({ target: { files: [file] } });
+}
+});
+// Calculate total price
+const sizeInputs = document.querySelectorAll('input[name="size"]');
+const frameInputs = document.querySelectorAll('input[name="frame"]');
+const totalPriceElement = document.getElementById('totalPrice');
+function updateTotalPrice() {
+let total = 0;
+const selectedSize = document.querySelector('input[name="size"]:checked');
+const selectedFrame = document.querySelector('input[name="frame"]:checked');
+if (selectedSize) {
+switch (selectedSize.value) {
+case 'small': total += 299; break;
+case 'medium': total += 499; break;
+case 'large': total += 799; break;
+}
+}
+if (selectedFrame) {
+switch (selectedFrame.value) {
+case 'simple': total += 99; break;
+case 'premium': total += 199; break;
+}
+}
+totalPriceElement.textContent = `$${total}`;
+}
+sizeInputs.forEach(input => input.addEventListener('change', updateTotalPrice));
+frameInputs.forEach(input => input.addEventListener('change', updateTotalPrice));
+// Form submission
+document.getElementById('paintingForm').addEventListener('submit', (e) => {
+e.preventDefault();
+const loading = showLoading();
+setTimeout(() => {
+loading.remove();
+showToast('Order placed successfully!');
+closePaintingModal();
+}, 1500);
+});
+// Initialize default values
+document.querySelector('input[name="size"][value="small"]').checked = true;
+document.querySelector('input[name="frame"][value="none"]').checked = true;
+updateTotalPrice();
+</script>
 <div class="category-card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer">
 <img src="https://public.readdy.ai/ai/img_res/a7b74fc4e2d1f83848248208983d4e32.jpg" class="w-full h-48 object-cover">
 <div class="p-6">
@@ -284,6 +444,27 @@ Upload Your Art
 <div class="p-6">
 <h3 class="text-xl font-semibold mb-2">Photography</h3>
 <p class="text-gray-600">Find stunning photographs from talented photographers worldwide.</p>
+</div>
+</div>
+<div class="category-card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer">
+<img src="https://public.readdy.ai/ai/img_res/9666d6ba5958f01d9aa0d781d60cbd21.jpg" class="w-full h-48 object-cover">
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Sculpture</h3>
+<p class="text-gray-600">Explore three-dimensional artworks and installations.</p>
+</div>
+</div>
+<div class="category-card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer">
+<img src="https://public.readdy.ai/ai/img_res/6af8602bd40a8763ca5339552c76a191.jpg" class="w-full h-48 object-cover">
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Prints</h3>
+<p class="text-gray-600">Discover limited edition prints and printmaking artworks.</p>
+</div>
+</div>
+<div class="category-card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer">
+<img src="https://public.readdy.ai/ai/img_res/1161c552c64e4096e09c57f790d82d97.jpg" class="w-full h-48 object-cover">
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Mixed Media</h3>
+<p class="text-gray-600">Experience unique artworks combining multiple mediums.</p>
 </div>
 </div>
 </div>
@@ -409,13 +590,21 @@ Start Uploading
 </ul>
 </div>
 <div>
-<h3 class="text-xl font-bold mb-4">Newsletter</h3>
-<p class="text-gray-400 mb-4">Subscribe to get updates on new artworks and featured artists.</p>
-<div class="flex">
-<input type="email" placeholder="Enter your email" class="flex-1 px-4 py-2 rounded-l-button bg-gray-800 border-none focus:outline-none focus:ring-2 focus:ring-primary">
-<button class="bg-primary px-6 py-2 rounded-r-button hover:bg-opacity-90 transition-colors">
-Subscribe
-</button>
+<h3 class="text-xl font-bold mb-4">Follow Us</h3>
+<p class="text-gray-400 mb-4">Stay connected with us on social media for the latest updates.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-facebook-fill text-2xl"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-twitter-fill text-2xl"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-instagram-fill text-2xl"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-pinterest-fill text-2xl"></i>
+</a>
 </div>
 </div>
 </div>
@@ -439,6 +628,126 @@ Subscribe
 </div>
 </footer>
 <script>
+const showLoginModal = () => {
+  const modal = document.createElement('div');
+  modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+  modal.innerHTML = `
+    <div class="bg-white rounded-lg w-[400px] p-8 transform transition-all slide-up">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-2xl font-bold">Welcome Back</h3>
+        <button class="text-gray-400 hover:text-gray-600" onclick="closeLoginModal(this)">
+          <i class="ri-close-line text-2xl"></i>
+        </button>
+      </div>
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Email</label>
+          <input type="email" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" required>
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Password</label>
+          <input type="password" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" required>
+        </div>
+        <div class="flex items-center justify-between">
+          <label class="flex items-center">
+            <input type="checkbox" class="text-primary">
+            <span class="ml-2 text-sm text-gray-600">Remember me</span>
+          </label>
+          <a href="#" class="text-sm text-primary hover:text-primary-dark">Forgot password?</a>
+        </div>
+        <button type="submit" class="w-full bg-primary text-white py-3 rounded-button hover:bg-opacity-90 transition-colors">
+          Sign In
+        </button>
+      </form>
+      <div class="mt-6 text-center">
+        <p class="text-gray-600">Don't have an account? 
+          <a href="#" class="text-primary hover:text-primary-dark" onclick="showRegisterModal(event)">Sign up</a>
+        </p>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  
+  modal.querySelector('#loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const loading = showLoading();
+    setTimeout(() => {
+      loading.remove();
+      closeLoginModal();
+      showToast('Logged in successfully!');
+    }, 1500);
+  });
+  
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeLoginModal();
+    }
+  });
+};
+const showRegisterModal = (e) => {
+  if(e) e.preventDefault();
+  const modal = document.createElement('div');
+  modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+  modal.innerHTML = `
+    <div class="bg-white rounded-lg w-[400px] p-8 transform transition-all slide-up">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-2xl font-bold">Create Account</h3>
+        <button class="text-gray-400 hover:text-gray-600" onclick="closeLoginModal(this)">
+          <i class="ri-close-line text-2xl"></i>
+        </button>
+      </div>
+      <form id="registerForm" class="space-y-4">
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Full Name</label>
+          <input type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" required>
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Email</label>
+          <input type="email" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" required>
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Password</label>
+          <input type="password" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" required>
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Confirm Password</label>
+          <input type="password" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" required>
+        </div>
+        <button type="submit" class="w-full bg-primary text-white py-3 rounded-button hover:bg-opacity-90 transition-colors">
+          Sign Up
+        </button>
+      </form>
+      <div class="mt-6 text-center">
+        <p class="text-gray-600">Already have an account? 
+          <a href="#" class="text-primary hover:text-primary-dark" onclick="showLoginModal(event)">Sign in</a>
+        </p>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  
+  modal.querySelector('#registerForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const loading = showLoading();
+    setTimeout(() => {
+      loading.remove();
+      closeLoginModal();
+      showToast('Account created successfully!');
+    }, 1500);
+  });
+  
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeLoginModal();
+    }
+  });
+};
+const closeLoginModal = () => {
+  const modal = document.querySelector('.fixed.inset-0.bg-black.bg-opacity-50');
+  if (modal) {
+    modal.remove();
+  }
+};
 const showToast = (message) => {
 const toast = document.createElement('div');
 toast.className = 'toast';
