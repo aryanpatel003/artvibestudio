@@ -3,22 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Photo Carousel</title>
-    <link rel="stylesheet" href="anim/srtyles.css">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .gallery {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .images img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        button {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="carousel">
-            <div class="images">
-                <img src="anim/Image1.jpg" alt="Image 1">
-                <img src="anim/image2.jpg" alt="Image 2">
-                <img src="anim/image3.jpg" alt="Image 3">
-                <img src="anim/image4.jpg" alt="Image 4">
-            </div>
-        </div>
-        <button id="prev">❮</button>
-        <button id="next">❯</button>
+
+<div class="gallery">
+    <div class="images" id="images">
+        <img src="anim/Image1.jpg" alt="Image 1">
+        <img src="anim/image2.jpg" alt="Image 2">
+        <img src="anim/image3.jpg" alt="Image 3">
     </div>
-    <script src="anim/script.js"></script>
+    <div class="buttons">
+        <button id="prevBtn">&#10094;</button>
+        <button id="nextBtn">&#10095;</button>
+    </div>
+</div>
+
+<script>
+    let currentIndex = 0;
+    const images = document.getElementById('images');
+    const totalImages = images.children.length;
+
+    document.getElementById('nextBtn').onclick = function() {
+        currentIndex = (currentIndex + 1) % totalImages;
+        updateGallery();
+    };
+
+    document.getElementById('prevBtn').onclick = function() {
+        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+        updateGallery();
+    };
+
+    function updateGallery() {
+        const offset = -(currentIndex * 100);
+        images.style.transform = `translateX(${offset}%)`;
+    }
+</script>
+
 </body>
 </html>
