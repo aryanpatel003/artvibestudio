@@ -1,40 +1,86 @@
-body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
 }
 
-.gallery-container {
-    position: relative;
-    max-width: 600px;
-    margin: auto;
-}
-
-.gallery {
-    display: flex;
-    overflow: hidden;
-    transition: transform 0.5s ease;
-}
-
-.gallery img {
+body {
     width: 100%;
-    max-width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('images/australia.jpg') no-repeat center center/cover;
+    transition: background 0.5s ease-in-out;
+}
+
+.container {
+    position: relative;
+    width: 80%;
+    max-width: 900px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.slide {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.item {
+    width: 150px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.item:hover {
+    transform: scale(1.1);
+}
+
+.content {
+    text-align: center;
 }
 
 button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.8);
+    margin-top: 10px;
+    padding: 5px 10px;
     border: none;
-    padding: 10px;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #555;
+}
+
+.button {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.button button {
+    background: #fff;
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 50%;
+    border: none;
     cursor: pointer;
 }
 
-.prev {
-    left: 10px;
-}
-
-.next {
-    right: 10px;
+.button button:hover {
+    background: #ddd;
 }
