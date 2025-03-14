@@ -35,6 +35,24 @@ DEFAULT: '8px',
 <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
+@media (max-width: 1023px) {
+  .nav-menu-mobile {
+    transform-origin: top;
+    transition: all 0.2s ease-out;
+  }
+  
+  .nav-menu-mobile.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+  }
+  
+  .nav-menu-mobile.flex {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+}
 .active-nav {
 color: #7C3AED;
 }
@@ -138,7 +156,7 @@ box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 
 <button class="lg:hidden text-gray-600" id="mobileMenuButton">
 <i class="ri-menu-line text-2xl"></i>
 </button>
-<div class="hidden lg:flex items-center space-x-8" id="navMenu">
+<div class="hidden lg:flex items-center space-x-8 nav-menu-mobile" id="navMenu">
 <a href="#" class="text-gray-700 hover:text-primary transition-colors active-nav" onclick="scrollToTop(event)" id="homeLink">Home</a>
 <a href="#" class="text-gray-700 hover:text-primary transition-colors">Gallery</a>
 <a href="#" class="text-gray-700 hover:text-primary transition-colors">Upload Art</a>
@@ -418,24 +436,22 @@ Subscribe
 </footer>
 <script>
 const showToast = (message) => {
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.textContent = message;
-  document.body.appendChild(toast);
-  setTimeout(() => toast.classList.add('show'), 100);
-  setTimeout(() => {
-    toast.classList.remove('show');
-    setTimeout(() => toast.remove(), 300);
-  }, 3000);
+const toast = document.createElement('div');
+toast.className = 'toast';
+toast.textContent = message;
+document.body.appendChild(toast);
+setTimeout(() => toast.classList.add('show'), 100);
+setTimeout(() => {
+toast.classList.remove('show');
+setTimeout(() => toast.remove(), 300);
+}, 3000);
 };
-
 const showLoading = () => {
-  const loading = document.createElement('div');
-  loading.className = 'loading';
-  document.body.appendChild(loading);
-  return loading;
+const loading = document.createElement('div');
+loading.className = 'loading';
+document.body.appendChild(loading);
+return loading;
 };
-
 document.addEventListener('DOMContentLoaded', function() {
 let currentSlide = 0;
 const slider = document.getElementById('slider');
@@ -543,17 +559,9 @@ dropdownContent.classList.add('hidden');
 }
 });
 const addToCart = (button) => {
-  const loading = showLoading();
-  setTimeout(() => {
-    loading.remove();
-    showToast('Added to cart successfully!');
-    const cartCount = document.querySelector('#cartButton span');
-    const currentCount = parseInt(cartCount.textContent.match(/\d+/)[0]);
-    cartCount.textContent = `Cart (${currentCount + 1})`;
-  }, 800);
-};
-
-const cartButton = document.getElementById('cartButton');
-cartButton.addEventListener('click', function() {
-const modal = document.createElement('div');
-modal.class
+const loading = showLoading();
+setTimeout(() => {
+loading.remove();
+showToast('Added to cart successfully!');
+const cartCount = document.querySelector('#cartButton span');
+const currentCount =
